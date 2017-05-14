@@ -1,0 +1,5913 @@
+//Flame1
+import flash.display.MovieClip;
+var LoadBoll:MovieClip;
+
+var nLoad:LoaderInfo = root.loaderInfo;
+var nLoadPercent:Number = Math.round(nLoad.bytesLoaded/nLoad.bytesTotal * 100);
+LoadBoll.rotation += 30;
+//intFrame
+
+
+//BGN処理
+//openingBgm
+var opBgm:MEopBGM;
+opBgm = new MEopBGM();
+var chanOp:SoundChannel = null;
+//PlayingBgm
+var playBgm:MEplayBGM;
+playBgm = new MEplayBGM();
+var chanPlay:SoundChannel = null;
+//endingBgm
+var edBgm:MEplayEDBGM;
+edBgm = new MEplayEDBGM();
+var chanEd:SoundChannel = null;
+//ReStartBgm
+var edReStart:MEplayRestartBGM;
+edReStart = new MEplayRestartBGM();
+var chanReStart:SoundChannel = null;
+//SE処理
+var PSEenter:SEenter;
+PSEenter = new SEenter();
+var PSE21:SE21;
+PSE21 = new SE21();
+var PSE22:SE22;
+PSE22 = new SE22();
+var PSE31:SE31;
+PSE31 = new SE31();
+var PSE32:SE32;
+PSE32 = new SE32();
+/*
+var PSE41:SE41;
+PSE41 = new SE41();
+var PSE42:SE42;
+PSE42 = new SE42();
+var PSE43:SE43;
+PSE43 = new SE43();
+var PSE44:SE44;
+PSE44 = new SE44();
+*/
+var PSEseikai:SEseikai;
+PSEseikai = new SEseikai();
+//様々な変数
+//public function get framesLoaded():int
+//public function get totalFrames():int
+var fps : Number = stage.frameRate;
+var EDmovie:MovieClip;
+var ReStart:MovieClip;
+var Start:MovieClip;
+var kuki:MovieClip;
+var ohana:MovieClip;
+var sample:Number = 0;
+var nobiritu:Number = 0;
+var kukiHeight:Number = 0;
+var ohanaItiY:Number = 0;
+var hanaFlag:Boolean = false;
+var playBgmFlag:Boolean = false;
+var i:int;
+var angou1:MovieClip;
+//マイク呼び出し
+var mic:Microphone = Microphone.getMicrophone();
+//play2秤の変数
+var isMouseDown:Boolean = false;
+var startDragX:Number;
+var startDragY:Number;
+var mcHintBlue:MovieClip;
+var omori1:MovieClip;
+var omori2:MovieClip;
+var omori3:MovieClip;
+var omori4:MovieClip;
+var omori5:MovieClip;
+var omori6:MovieClip;
+var omori7:MovieClip;
+var omori8:MovieClip;
+var Wbox1:MovieClip;
+var Wbox2:MovieClip;
+var Wbox3:MovieClip;
+var Hbox1:MovieClip;
+var Hbox2:MovieClip;
+var Wbox1Flag:Boolean = false;
+var Wbox2Flag:Boolean = false;
+var Wbox3Flag:Boolean = false;
+var Wbox1Anser:Boolean = false;
+var Wbox2Anser:Boolean = false;
+var Wbox3Anser:Boolean = false;
+var Hbox1Flag:Boolean = false;
+var Hbox2Flag:Boolean = false;
+var InFlag1:Boolean = false;
+var InFlag2:Boolean = false;
+var InFlag3:Boolean = false;
+var InFlag4:Boolean = false;
+var InFlag5:Boolean = false;
+var InFlag6:Boolean = false;
+var InFlag7:Boolean = false;
+var InFlag8:Boolean = false;
+var Gram1:Number = 47;
+var Gram2:Number = 25;
+var Gram3:Number = 36;
+var Gram4:Number = 4;
+var Gram5:Number = 2;
+var Gram6:Number = 1;
+var Gram7:Number = 27;
+var Gram8:Number = 12;
+var Ga:Number = 0;
+var Gb:Number = 0;
+var aPb:Number = 0;
+var hikaku:TextField;
+var goukei:TextField;
+//play3の変数
+var Cpanel1:MovieClip;
+var Cpanel2:MovieClip;
+var Cpanel3:MovieClip;
+var Cpanel4:MovieClip;
+var Cpanel5:MovieClip;
+var Cpanel6:MovieClip;
+var Cpanel7:MovieClip;
+var Cpanel8:MovieClip;
+var Cpanel9:MovieClip;
+var Cpanel10:MovieClip;
+var Cpanel11:MovieClip;
+var Cpanel12:MovieClip;
+var Cpanel13:MovieClip;
+var Cpanel14:MovieClip;
+var Cpanel15:MovieClip;
+var Cpanel16:MovieClip;
+var My_color1 : ColorTransform = new ColorTransform();
+var My_color2 : ColorTransform = new ColorTransform();
+var My_color3 : ColorTransform = new ColorTransform();
+var My_color4 : ColorTransform = new ColorTransform();
+var My_color5 : ColorTransform = new ColorTransform();
+var My_color6 : ColorTransform = new ColorTransform();
+var My_color7 : ColorTransform = new ColorTransform();
+var My_color8 : ColorTransform = new ColorTransform();
+var My_color9 : ColorTransform = new ColorTransform();
+var My_color10 : ColorTransform = new ColorTransform();
+var My_color11 : ColorTransform = new ColorTransform();
+var My_color12 : ColorTransform = new ColorTransform();
+var My_color13 : ColorTransform = new ColorTransform();
+var My_color14 : ColorTransform = new ColorTransform();
+var My_color15 : ColorTransform = new ColorTransform();
+var My_color16 : ColorTransform = new ColorTransform();
+var My_color17 : ColorTransform = new ColorTransform();
+var My_color18 : ColorTransform = new ColorTransform();
+var Color1:Number = 0;
+var Color2:Number = 0;
+var Color3:Number = 0;
+var Color4:Number = 0;
+var Color5:Number = 1;
+var Color6:Number = 1;
+var Color7:Number = 1;
+var Color8:Number = 1;
+var Color9:Number = 2;
+var Color10:Number = 2;
+var Color11:Number = 2;
+var Color12:Number = 2;
+var Color13:Number = 3;
+var Color14:Number = 3;
+var Color15:Number = 3;
+var Color16:Number = 3;
+var PanelFlag1:Boolean = false;
+var PanelFlag2:Boolean = false;
+var PanelFlag3:Boolean = false;
+var PanelFlag4:Boolean = false;
+var PanelFlag5:Boolean = false;
+var PanelFlag6:Boolean = false;
+var PanelFlag7:Boolean = false;
+var PanelFlag8:Boolean = false;
+var PanelFlag9:Boolean = false;
+var PanelFlag10:Boolean = false;
+var PanelFlag11:Boolean = false;
+var PanelFlag12:Boolean = false;
+var PanelFlag13:Boolean = false;
+var PanelFlag14:Boolean = false;
+var PanelFlag15:Boolean = false;
+var PanelFlag16:Boolean = false;
+//play4の変数
+var mcRedS:MovieClip;
+var mcGreenS:MovieClip;
+var mcBlueS:MovieClip;
+var mcPinkS:MovieClip;
+var Upkabe:MovieClip;
+var Downkabe:MovieClip;
+var mcRrod:MovieClip;
+var mcProd:MovieClip;
+var mcBrod:MovieClip;
+var mcGrod:MovieClip;
+var mcHintGreen:MovieClip;
+var EDmaru:MovieClip;
+var ItiX:Number = 0;
+var ItiY:Number = 0;
+var ItiZ:Number = 0;
+var RPM:Number = 1;
+var GPM:Number = 1;
+var BPM:Number = 1;
+var PPM:Number = 1;
+
+//Flame2
+if ( nLoadPercent == 100 ) {
+	gotoAndPlay("op");
+} else {
+	gotoAndPlay(1);
+}
+
+//Flame6
+stop();
+chanOp = opBgm.play(0,999999);
+Start.addEventListener(MouseEvent.MOUSE_DOWN,   onMouseDownStart);
+stage.addEventListener(Event.ENTER_FRAME, MoveStart);
+
+function MoveStart(event:Event):void {
+	Start.rotation += 0.1;
+}
+
+function onMouseDownStart(event:MouseEvent):void {
+	Start.removeEventListener(MouseEvent.MOUSE_DOWN,   onMouseDownStart);
+	stage.removeEventListener(Event.ENTER_FRAME, MoveStart);
+	chanOp.stop();
+	chanOp = null;
+	PSEenter.play(0,0);
+	setTimeout(function(){
+		gotoAndStop("play1");
+	},2500);
+}
+
+//Flame11
+stop();
+if( playBgmFlag == true ){ 
+	chanPlay.stop();
+	chanPlay = null;
+	playBgmFlag = false;
+}
+import flash.events.TransformGestureEvent;
+import flash.events.Event;
+import flash.media.Microphone;
+import flash.display.MovieClip;
+import flash.sampler.Sample;
+import flash.utils.ByteArray;
+Multitouch.inputMode=MultitouchInputMode.GESTURE;
+
+
+
+//ステージ上のスワイプを感知するイベント
+stage.addEventListener(TransformGestureEvent.GESTURE_SWIPE,  onSwipe);
+kuki.addEventListener(Event.ENTER_FRAME, nobiru);
+mic.addEventListener(SampleDataEvent.SAMPLE_DATA, onSampleData);
+
+
+
+function onSwipe(ev:TransformGestureEvent):void{
+	if(ev.offsetX == 1){
+		stage.removeEventListener(TransformGestureEvent.GESTURE_SWIPE,onSwipe);
+		kuki.removeEventListener(Event.ENTER_FRAME, nobiru);
+		mic.removeEventListener(SampleDataEvent.SAMPLE_DATA, onSampleData);
+		hanaFlag = false;
+		gotoAndStop("play2");
+		return;
+	}
+	if(ev.offsetX == -1){
+		stage.removeEventListener(TransformGestureEvent.GESTURE_SWIPE,onSwipe);
+		kuki.removeEventListener(Event.ENTER_FRAME, nobiru);
+		mic.removeEventListener(SampleDataEvent.SAMPLE_DATA, onSampleData);
+		hanaFlag = false;
+		gotoAndStop("play4");
+		return;
+	}
+}
+
+if(Microphone.isSupported) {
+	if( mic != null ){
+		mic.rate = 50;
+		mic.gain = 100;
+	}
+}
+
+function onSampleData(event:SampleDataEvent):void{
+	var bArray:ByteArray = event.data;
+	var i:int;
+	//受け取ったサウンドデータの絶対値の総和を求める
+	for( i = 0 ; i < bArray.bytesAvailable ; i++) {
+		sample += Math.abs(bArray.readFloat());
+	}
+	sample = sample / bArray.bytesAvailable * 1000; //平均値を変えて100倍
+	trace( sample );
+	if( sample >= 100 ){
+		nobiritu = 7/4;
+	} else {
+		if( sample >= 90){
+			nobiritu = 6/4;
+		} else {
+			if( sample >= 80){
+				nobiritu = 5/4;
+			} else {
+				if( sample >= 70){
+					nobiritu = 3/4;
+				} else {
+					if( sample >= 60){
+						nobiritu = 2/4;
+					} else {
+						if( sample >= 50){
+							nobiritu = 1/4;
+						} else {
+							nobiritu = 0;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+function nobiru(event:Event) {
+	kuki.height += nobiritu;
+	ohana.y -= nobiritu ;
+	ohana.rotation += 1;
+	ohanaItiY = ohana.y;
+	kukiHeight = kuki.height;
+	if( ohanaItiY <= 300 ){
+		trace(kuki.height);
+		angou1.x = 49;
+		angou1.y = 138.70;
+		nobiritu = 0;
+		mic.removeEventListener(SampleDataEvent.SAMPLE_DATA, onSampleData);
+		if( hanaFlag == false ){
+			PSEseikai.play(0,0);
+			hanaFlag = true;
+		}
+		ohanaItiY = ohana.y;
+		kukiHeight = kuki.height;
+	}	
+}
+
+
+//Flame16
+stop();
+import flash.events.MouseEvent;
+if( playBgmFlag == false ){
+	chanPlay = playBgm.play(0,999999);
+	playBgmFlag = true;
+	trace("PlayBgm");
+}
+Multitouch.inputMode=MultitouchInputMode.GESTURE;
+stage.addEventListener(TransformGestureEvent.GESTURE_SWIPE,  onSwipe2);
+stage.addEventListener(Event.ENTER_FRAME, Flag);
+omori1.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+omori1.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+omori1.addEventListener(MouseEvent.MOUSE_UP,   onMouseUp1);
+omori2.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+omori2.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+omori2.addEventListener(MouseEvent.MOUSE_UP,   onMouseUp2);
+omori3.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+omori3.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+omori3.addEventListener(MouseEvent.MOUSE_UP,   onMouseUp3);
+omori4.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+omori4.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+omori4.addEventListener(MouseEvent.MOUSE_UP,   onMouseUp4);
+omori5.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+omori5.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+omori5.addEventListener(MouseEvent.MOUSE_UP,   onMouseUp5);
+omori6.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+omori6.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+omori6.addEventListener(MouseEvent.MOUSE_UP,   onMouseUp6);
+omori7.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+omori7.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+omori7.addEventListener(MouseEvent.MOUSE_UP,   onMouseUp7);
+omori8.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+omori8.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+omori8.addEventListener(MouseEvent.MOUSE_UP,   onMouseUp8);
+
+function onSwipe2(ev:TransformGestureEvent):void{
+	if(ev.offsetX == 1){
+		stage.removeEventListener(TransformGestureEvent.GESTURE_SWIPE,onSwipe2);
+		stage.removeEventListener(Event.ENTER_FRAME, Flag);
+		omori1.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		omori1.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+		omori1.removeEventListener(MouseEvent.MOUSE_UP,   onMouseUp1);
+		omori2.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		omori2.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+		omori2.removeEventListener(MouseEvent.MOUSE_UP,   onMouseUp2);
+		omori3.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		omori3.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+		omori3.removeEventListener(MouseEvent.MOUSE_UP,   onMouseUp3);
+		omori4.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		omori4.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+		omori4.removeEventListener(MouseEvent.MOUSE_UP,   onMouseUp4);
+		omori5.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		omori5.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+		omori5.removeEventListener(MouseEvent.MOUSE_UP,   onMouseUp5);
+		omori6.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		omori6.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+		omori6.removeEventListener(MouseEvent.MOUSE_UP,   onMouseUp6);
+		omori7.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		omori7.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+		omori7.removeEventListener(MouseEvent.MOUSE_UP,   onMouseUp7);
+		omori8.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		omori8.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+		omori8.removeEventListener(MouseEvent.MOUSE_UP,   onMouseUp8);
+		Wbox1Flag = false;
+		Wbox2Flag = false;
+		Wbox3Flag = false;
+		Wbox1Anser = false;
+		Wbox2Anser = false;
+		Wbox3Anser = false;
+		Hbox1Flag = false;
+		Hbox2Flag = false;
+		InFlag1 = false;
+		InFlag2 = false;
+		InFlag3 = false;
+		InFlag4 = false;
+		InFlag5 = false;
+		InFlag6 = false;
+		InFlag7 = false;
+		InFlag8 = false;
+		mcHintBlue.visible = false;
+		gotoAndStop("play3");	
+	}
+	if(ev.offsetX == -1){
+		stage.removeEventListener(TransformGestureEvent.GESTURE_SWIPE,onSwipe2);
+		stage.removeEventListener(Event.ENTER_FRAME, Flag);
+		omori1.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		omori1.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+		omori1.removeEventListener(MouseEvent.MOUSE_UP,   onMouseUp1);
+		omori2.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		omori2.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+		omori2.removeEventListener(MouseEvent.MOUSE_UP,   onMouseUp2);
+		omori3.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		omori3.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+		omori3.removeEventListener(MouseEvent.MOUSE_UP,   onMouseUp3);
+		omori4.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		omori4.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+		omori4.removeEventListener(MouseEvent.MOUSE_UP,   onMouseUp4);
+		omori5.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		omori5.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+		omori5.removeEventListener(MouseEvent.MOUSE_UP,   onMouseUp5);
+		omori6.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		omori6.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+		omori6.removeEventListener(MouseEvent.MOUSE_UP,   onMouseUp6);
+		omori7.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		omori7.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+		omori7.removeEventListener(MouseEvent.MOUSE_UP,   onMouseUp7);
+		omori8.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		omori8.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+		omori8.removeEventListener(MouseEvent.MOUSE_UP,   onMouseUp8);
+		Wbox1Flag = false;
+		Wbox2Flag = false;
+		Wbox3Flag = false;
+		Wbox1Anser = false;
+		Wbox2Anser = false;
+		Wbox3Anser = false;
+		Hbox1Flag = false;
+		Hbox2Flag = false;
+		InFlag1 = false;
+		InFlag2 = false;
+		InFlag3 = false;
+		InFlag4 = false;
+		InFlag5 = false;
+		InFlag6 = false;
+		InFlag7 = false;
+		InFlag8 = false;
+		mcHintBlue.visible = false;
+		gotoAndStop("play1");
+	}
+}
+
+function Flag( event:Event){
+	if( Hbox1Flag == true && Hbox2Flag == true){
+		if( Ga < Gb ){
+			hikaku.text = "<";
+		} else {
+			hikaku.text = ">";
+		}
+		aPb = Ga + Gb;
+		goukei.text = aPb.toString();
+	} else {
+		hikaku.text = "";
+		goukei.text = "";
+	}
+	if( Wbox1Anser == true && Wbox2Anser == true && Wbox3Anser == true){
+		//ヒント表示	
+		mcHintBlue.visible = true;
+		omori1.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		omori1.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+		omori1.removeEventListener(MouseEvent.MOUSE_UP,   onMouseUp1);
+		omori2.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		omori2.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+		omori2.removeEventListener(MouseEvent.MOUSE_UP,   onMouseUp2);
+		omori3.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		omori3.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+		omori3.removeEventListener(MouseEvent.MOUSE_UP,   onMouseUp3);
+		omori4.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		omori4.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+		omori4.removeEventListener(MouseEvent.MOUSE_UP,   onMouseUp4);
+		omori5.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		omori5.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+		omori5.removeEventListener(MouseEvent.MOUSE_UP,   onMouseUp5);
+		omori6.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		omori6.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+		omori6.removeEventListener(MouseEvent.MOUSE_UP,   onMouseUp6);
+		omori7.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		omori7.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+		omori7.removeEventListener(MouseEvent.MOUSE_UP,   onMouseUp7);
+		omori8.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+		omori8.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+		omori8.removeEventListener(MouseEvent.MOUSE_UP,   onMouseUp8);
+		stage.removeEventListener(Event.ENTER_FRAME, Flag);
+		PSEseikai.play(0,0);
+	}
+}
+
+function onMouseDown(event:MouseEvent):void {
+	PSE21.play(0,0);
+	event.target.startDrag();
+	isMouseDown = true;
+	startDragX = event.target.x;
+	startDragY = event.target.y;
+	/*if ( Wbox1Flag == true ){
+		Wbox1Flag = false;
+	} else if ( Wbox2Flag == true){
+		Wbox2Flag = false;
+	} else if ( Wbox3Flag == true){
+		Wbox3Flag = false;
+	}*/
+	
+}
+function onMouseMove(event:MouseEvent):void {
+	if ( isMouseDown ) {
+		event.target.x = stage.mouseX;
+		event.target.y = stage.mouseY;	
+	}
+}
+
+//赤おもり	
+function onMouseUp1(event:MouseEvent):void {
+	PSE22.play(0,0);
+	event.target.stopDrag();
+	isMouseDown = false;
+	if( Wbox1.hitTestObject(omori1) ) {
+		if( InFlag1== true || Wbox1Flag == true) {
+			//箱1の中身あり
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//箱１が空
+			event.target.x = Wbox1.x;
+			event.target.y = Wbox1.y;
+			Wbox1Flag = true;
+			InFlag1 = true; 
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+		}
+	}else if(Wbox2.hitTestObject(omori1)) {
+		if( InFlag1== true || Wbox2Flag == true) {
+			//箱2の中身あり
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//箱2が空
+			event.target.x = Wbox2.x;
+			event.target.y = Wbox2.y;
+			Wbox2Flag = true;
+			InFlag1 = true; 
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+		}
+	} else if( Wbox3.hitTestObject(omori1)) {
+		if( InFlag1== true || Wbox3Flag == true) {
+			//箱3の中身あり
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//箱3が空
+			event.target.x = Wbox3.x;
+			event.target.y = Wbox3.y;
+			Wbox3Flag = true;
+			InFlag1 = true; 
+			Wbox3Anser = true;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+		}
+	} else if( Hbox1.hitTestObject(omori1)) {
+		if( InFlag1== true || Hbox1Flag == true) {
+			//秤1の上に乗っている
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//秤1に乗ってない
+			event.target.x = Hbox1.x;
+			event.target.y = Hbox1.y;
+			Hbox1Flag = true;
+			InFlag1 = true; 
+			Ga = Gram1;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+		}
+	} else if( Hbox2.hitTestObject(omori1)) {
+		if( InFlag1== true || Hbox2Flag == true) {
+			//秤2の上に乗っている
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//秤2に乗ってない
+			event.target.x = Hbox2.x;
+			event.target.y = Hbox2.y;
+			Hbox2Flag = true;
+			InFlag1 = true;
+			Gb = Gram1;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+		}	
+	} else {
+		Wbox1Flag = false;
+		Wbox2Flag = false;
+		Wbox3Flag = false;
+		Hbox1Flag = false;
+		Hbox2Flag = false;
+		InFlag1 = false;
+		InFlag2 = false;
+		InFlag3 = false;
+		InFlag4 = false;
+		InFlag5 = false;
+		InFlag6 = false;
+		InFlag7 = false;
+		InFlag8 = false;
+		omori1.x = 100;
+		omori1.y = 800;
+		omori2.x = 240;
+		omori2.y = 800;
+		omori3.x = 400;
+		omori3.y = 800;
+		omori4.x = 530;
+		omori4.y = 800;
+		omori5.x = 100;
+		omori5.y = 900;
+		omori6.x = 240;
+		omori6.y = 900;
+		omori7.x = 400;
+		omori7.y = 900;
+		omori8.x = 530;
+		omori8.y = 900;
+		trace("Wbox1Flag="+Wbox1Flag);
+		trace("Wbox2Flag="+Wbox2Flag);
+		trace("Wbox3Flag="+Wbox3Flag);
+		trace("Hbox1Flag="+Hbox1Flag);
+		trace("Hbox2Flag="+Hbox2Flag);
+		trace("InFlag1="+InFlag1);
+		trace("InFlag2="+InFlag2);
+		trace("InFlag3="+InFlag3);
+		trace("InFlag4="+InFlag4);
+		trace("InFlag5="+InFlag5);
+		trace("InFlag6="+InFlag6);
+		trace("InFlag7="+InFlag7);
+		trace("InFlag8="+InFlag8);
+		Wbox1Anser = false;
+		Wbox2Anser = false;
+		Wbox3Anser = false;
+	}
+}
+
+//緑おもり
+function onMouseUp2(event:MouseEvent):void {
+	PSE22.play(0,0);
+	event.target.stopDrag();
+	isMouseDown = false;
+	if( Wbox1.hitTestObject(omori2) ) {
+		if( InFlag2== true || Wbox1Flag == true ) {
+			//箱1の中身あり
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//箱１が空
+			event.target.x = Wbox1.x;
+			event.target.y = Wbox1.y;
+			Wbox1Flag = true;
+			InFlag2 = true; 
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag2="+InFlag2);
+		}
+	}else if(Wbox2.hitTestObject(omori2)) {
+		if( InFlag2== true || Wbox2Flag == true) {
+			//箱2の中身あり
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//箱2が空
+			event.target.x = Wbox2.x;
+			event.target.y = Wbox2.y;
+			Wbox2Flag = true;
+			InFlag2 = true; 
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag2="+InFlag2);
+		}
+	} else if( Wbox3.hitTestObject(omori2)) {
+		if( InFlag2== true  || Wbox3Flag == true ) {
+			//箱3の中身あり
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//箱3が空
+			event.target.x = Wbox3.x;
+			event.target.y = Wbox3.y;
+			Wbox3Flag = true;
+			InFlag2 = true; 
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag2="+InFlag2);
+		}
+	} else if( Hbox1.hitTestObject(omori2)) {
+		if( InFlag2== true || Hbox1Flag == true) {
+			//秤1の上に乗っている
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//秤1に乗ってない
+			event.target.x = Hbox1.x;
+			event.target.y = Hbox1.y;
+			Hbox1Flag = true;
+			InFlag2 = true;
+			Ga = Gram2;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag2="+InFlag2);
+		}
+	} else if( Hbox2.hitTestObject(omori2)) {
+		if( InFlag2== true || Hbox2Flag == true) {
+			//秤2の上に乗っている
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//秤2に乗ってない
+			event.target.x = Hbox2.x;
+			event.target.y = Hbox2.y;
+			Hbox2Flag = true;
+			InFlag2 = true;
+			Gb = Gram2;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag2="+InFlag2);
+		}	
+	} else {
+		Wbox1Flag = false;
+		Wbox2Flag = false;
+		Wbox3Flag = false;
+		Hbox1Flag = false;
+		Hbox2Flag = false;
+		InFlag1 = false;
+		InFlag2 = false;
+		InFlag3 = false;
+		InFlag4 = false;
+		InFlag5 = false;
+		InFlag6 = false;
+		InFlag7 = false;
+		InFlag8 = false;
+		omori1.x = 100;
+		omori1.y = 800;
+		omori2.x = 240;
+		omori2.y = 800;
+		omori3.x = 400;
+		omori3.y = 800;
+		omori4.x = 530;
+		omori4.y = 800;
+		omori5.x = 100;
+		omori5.y = 900;
+		omori6.x = 240;
+		omori6.y = 900;
+		omori7.x = 400;
+		omori7.y = 900;
+		omori8.x = 530;
+		omori8.y = 900;
+		trace("Wbox1Flag="+Wbox1Flag);
+		trace("Wbox2Flag="+Wbox2Flag);
+		trace("Wbox3Flag="+Wbox3Flag);
+		trace("Hbox1Flag="+Hbox1Flag);
+		trace("Hbox2Flag="+Hbox2Flag);
+		trace("InFlag1="+InFlag1);
+		trace("InFlag2="+InFlag2);
+		trace("InFlag3="+InFlag3);
+		trace("InFlag4="+InFlag4);
+		trace("InFlag5="+InFlag5);
+		trace("InFlag6="+InFlag6);
+		trace("InFlag7="+InFlag7);
+		trace("InFlag8="+InFlag8);
+		Wbox1Anser = false;
+		Wbox2Anser = false;
+		Wbox3Anser = false;
+	}
+}
+
+//青おもり
+function onMouseUp3(event:MouseEvent):void {
+	PSE22.play(0,0);
+	event.target.stopDrag();
+	isMouseDown = false;
+	if( Wbox1.hitTestObject(omori3) ) {
+		if( InFlag3== true || Wbox1Flag == true ) {
+			//箱1の中身あり
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//箱１が空
+			event.target.x = Wbox1.x;
+			event.target.y = Wbox1.y;
+			Wbox1Flag = true;
+			InFlag3 = true; 
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag3="+InFlag3);
+		}
+	}else if(Wbox2.hitTestObject(omori3)) {
+		if( InFlag3== true || Wbox2Flag == true) {
+			//箱2の中身あり
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//箱2が空
+			event.target.x = Wbox2.x;
+			event.target.y = Wbox2.y;
+			Wbox2Flag = true;
+			InFlag3 = true; 
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag3="+InFlag3);
+		}
+	} else if( Wbox3.hitTestObject(omori3)) {
+		if( InFlag3== true  || Wbox3Flag == true ) {
+			//箱3の中身あり
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//箱3が空
+			event.target.x = Wbox3.x;
+			event.target.y = Wbox3.y;
+			Wbox3Flag = true;
+			InFlag3 = true; 
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag3="+InFlag3);
+		}
+	} else if( Hbox1.hitTestObject(omori3)) {
+		if( InFlag3== true || Hbox1Flag == true) {
+			//秤1の上に乗っている
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//秤1に乗ってない
+			event.target.x = Hbox1.x;
+			event.target.y = Hbox1.y;
+			Hbox1Flag = true;
+			InFlag3 = true;
+			Ga = Gram3;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag3="+InFlag3);
+		}
+	} else if( Hbox2.hitTestObject(omori3)) {
+		if( InFlag3== true || Hbox2Flag == true) {
+			//秤2の上に乗っている
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//秤2に乗ってない
+			event.target.x = Hbox2.x;
+			event.target.y = Hbox2.y;
+			Hbox2Flag = true;
+			InFlag3 = true;
+			Gb = Gram3;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag3="+InFlag3);
+		}	
+	} else {
+		Wbox1Flag = false;
+		Wbox2Flag = false;
+		Wbox3Flag = false;
+		Hbox1Flag = false;
+		Hbox2Flag = false;
+		InFlag1 = false;
+		InFlag2 = false;
+		InFlag3 = false;
+		InFlag4 = false;
+		InFlag5 = false;
+		InFlag6 = false;
+		InFlag7 = false;
+		InFlag8 = false;
+		omori1.x = 100;
+		omori1.y = 800;
+		omori2.x = 240;
+		omori2.y = 800;
+		omori3.x = 400;
+		omori3.y = 800;
+		omori4.x = 530;
+		omori4.y = 800;
+		omori5.x = 100;
+		omori5.y = 900;
+		omori6.x = 240;
+		omori6.y = 900;
+		omori7.x = 400;
+		omori7.y = 900;
+		omori8.x = 530;
+		omori8.y = 900;
+		trace("Wbox1Flag="+Wbox1Flag);
+		trace("Wbox2Flag="+Wbox2Flag);
+		trace("Wbox3Flag="+Wbox3Flag);
+		trace("Hbox1Flag="+Hbox1Flag);
+		trace("Hbox2Flag="+Hbox2Flag);
+		trace("InFlag1="+InFlag1);
+		trace("InFlag2="+InFlag2);
+		trace("InFlag3="+InFlag3);
+		trace("InFlag4="+InFlag4);
+		trace("InFlag5="+InFlag5);
+		trace("InFlag6="+InFlag6);
+		trace("InFlag7="+InFlag7);
+		trace("InFlag8="+InFlag8);
+		Wbox1Anser = false;
+		Wbox2Anser = false;
+		Wbox3Anser = false;
+	}
+}
+
+
+//黄色おもり
+function onMouseUp4(event:MouseEvent):void {
+	PSE22.play(0,0);
+	event.target.stopDrag();
+	isMouseDown = false;
+	if( Wbox1.hitTestObject(omori4) ) {
+		if( InFlag4== true || Wbox1Flag == true ) {
+			//箱1の中身あり
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//箱１が空
+			event.target.x = Wbox1.x;
+			event.target.y = Wbox1.y;
+			Wbox1Flag = true;
+			InFlag4 = true; 
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag4="+InFlag4);
+		}
+	}else if(Wbox2.hitTestObject(omori4)) {
+		if( InFlag4== true || Wbox2Flag == true) {
+			//箱2の中身あり
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//箱2が空
+			event.target.x = Wbox2.x;
+			event.target.y = Wbox2.y;
+			Wbox2Flag = true;
+			InFlag4 = true; 
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag4="+InFlag4);
+		}
+	} else if( Wbox3.hitTestObject(omori4)) {
+		if( InFlag4== true  || Wbox3Flag == true ) {
+			//箱3の中身あり
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//箱3が空
+			event.target.x = Wbox3.x;
+			event.target.y = Wbox3.y;
+			Wbox3Flag = true;
+			InFlag4 = true; 
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag4="+InFlag4);
+		}
+	} else if( Hbox1.hitTestObject(omori4)) {
+		if( InFlag4== true || Hbox1Flag == true) {
+			//秤1の上に乗っている
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//秤1に乗ってない
+			event.target.x = Hbox1.x;
+			event.target.y = Hbox1.y;
+			Hbox1Flag = true;
+			InFlag4 = true;
+			Ga = Gram4;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag4="+InFlag4);
+		}
+	} else if( Hbox2.hitTestObject(omori4)) {
+		if( InFlag4== true || Hbox2Flag == true) {
+			//秤2の上に乗っている
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//秤2に乗ってない
+			event.target.x = Hbox2.x;
+			event.target.y = Hbox2.y;
+			Hbox2Flag = true;
+			InFlag4 = true;
+			Gb = Gram4;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag4="+InFlag4);
+		}	
+	} else {
+		Wbox1Flag = false;
+		Wbox2Flag = false;
+		Wbox3Flag = false;
+		Hbox1Flag = false;
+		Hbox2Flag = false;
+		InFlag1 = false;
+		InFlag2 = false;
+		InFlag3 = false;
+		InFlag4 = false;
+		InFlag5 = false;
+		InFlag6 = false;
+		InFlag7 = false;
+		InFlag8 = false;
+		omori1.x = 100;
+		omori1.y = 800;
+		omori2.x = 240;
+		omori2.y = 800;
+		omori3.x = 400;
+		omori3.y = 800;
+		omori4.x = 530;
+		omori4.y = 800;
+		omori5.x = 100;
+		omori5.y = 900;
+		omori6.x = 240;
+		omori6.y = 900;
+		omori7.x = 400;
+		omori7.y = 900;
+		omori8.x = 530;
+		omori8.y = 900;
+		trace("Wbox1Flag="+Wbox1Flag);
+		trace("Wbox2Flag="+Wbox2Flag);
+		trace("Wbox3Flag="+Wbox3Flag);
+		trace("Hbox1Flag="+Hbox1Flag);
+		trace("Hbox2Flag="+Hbox2Flag);
+		trace("InFlag1="+InFlag1);
+		trace("InFlag2="+InFlag2);
+		trace("InFlag3="+InFlag3);
+		trace("InFlag4="+InFlag4);
+		trace("InFlag5="+InFlag5);
+		trace("InFlag6="+InFlag6);
+		trace("InFlag7="+InFlag7);
+		trace("InFlag8="+InFlag8);
+		Wbox1Anser = false;
+		Wbox2Anser = false;
+		Wbox3Anser = false;
+	}
+}
+
+
+//水色おもり
+function onMouseUp5(event:MouseEvent):void {
+	PSE22.play(0,0);
+	event.target.stopDrag();
+	isMouseDown = false;
+	if( Wbox1.hitTestObject(omori5) ) {
+		if( InFlag5== true || Wbox1Flag == true ) {
+			//箱1の中身あり
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//箱１が空
+			event.target.x = Wbox1.x;
+			event.target.y = Wbox1.y;
+			Wbox1Flag = true;
+			InFlag5 = true; 
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag5="+InFlag5);
+		}
+	}else if(Wbox2.hitTestObject(omori5)) {
+		if( InFlag5== true || Wbox2Flag == true) {
+			//箱2の中身あり
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//箱2が空
+			event.target.x = Wbox2.x;
+			event.target.y = Wbox2.y;
+			Wbox2Flag = true;
+			InFlag5 = true;
+			Wbox2Anser = true;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag5="+InFlag5);
+		}
+	} else if( Wbox3.hitTestObject(omori5)) {
+		if( InFlag5== true  || Wbox3Flag == true ) {
+			//箱3の中身あり
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//箱3が空
+			event.target.x = Wbox3.x;
+			event.target.y = Wbox3.y;
+			Wbox3Flag = true;
+			InFlag5 = true; 
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag5="+InFlag5);
+		}
+	} else if( Hbox1.hitTestObject(omori5)) {
+		if( InFlag5== true || Hbox1Flag == true) {
+			//秤1の上に乗っている
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//秤1に乗ってない
+			event.target.x = Hbox1.x;
+			event.target.y = Hbox1.y;
+			Hbox1Flag = true;
+			InFlag5 = true;
+			Ga = Gram5;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag5="+InFlag5);
+		}
+	} else if( Hbox2.hitTestObject(omori5)) {
+		if( InFlag5== true || Hbox2Flag == true) {
+			//秤2の上に乗っている
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//秤2に乗ってない
+			event.target.x = Hbox2.x;
+			event.target.y = Hbox2.y;
+			Hbox2Flag = true;
+			InFlag5 = true;
+			Gb = Gram5;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag5="+InFlag5);
+		}	
+	} else {
+		Wbox1Flag = false;
+		Wbox2Flag = false;
+		Wbox3Flag = false;
+		Hbox1Flag = false;
+		Hbox2Flag = false;
+		InFlag1 = false;
+		InFlag2 = false;
+		InFlag3 = false;
+		InFlag4 = false;
+		InFlag5 = false;
+		InFlag6 = false;
+		InFlag7 = false;
+		InFlag8 = false;
+		omori1.x = 100;
+		omori1.y = 800;
+		omori2.x = 240;
+		omori2.y = 800;
+		omori3.x = 400;
+		omori3.y = 800;
+		omori4.x = 530;
+		omori4.y = 800;
+		omori5.x = 100;
+		omori5.y = 900;
+		omori6.x = 240;
+		omori6.y = 900;
+		omori7.x = 400;
+		omori7.y = 900;
+		omori8.x = 530;
+		omori8.y = 900;
+		trace("Wbox1Flag="+Wbox1Flag);
+		trace("Wbox2Flag="+Wbox2Flag);
+		trace("Wbox3Flag="+Wbox3Flag);
+		trace("Hbox1Flag="+Hbox1Flag);
+		trace("Hbox2Flag="+Hbox2Flag);
+		trace("InFlag1="+InFlag1);
+		trace("InFlag2="+InFlag2);
+		trace("InFlag3="+InFlag3);
+		trace("InFlag4="+InFlag4);
+		trace("InFlag5="+InFlag5);
+		trace("InFlag6="+InFlag6);
+		trace("InFlag7="+InFlag7);
+		trace("InFlag8="+InFlag8);
+		Wbox1Anser = false;
+		Wbox2Anser = false;
+		Wbox3Anser = false;
+	}
+}
+
+//ピンクおもり
+function onMouseUp6(event:MouseEvent):void {
+	PSE22.play(0,0);
+	event.target.stopDrag();
+	isMouseDown = false;
+	if( Wbox1.hitTestObject(omori6) ) {
+		if( InFlag6== true || Wbox1Flag == true ) {
+			//箱1の中身あり
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//箱１が空
+			event.target.x = Wbox1.x;
+			event.target.y = Wbox1.y;
+			Wbox1Flag = true;
+			InFlag6 = true;
+			Wbox1Anser = true;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag6="+InFlag6);
+		}
+	}else if(Wbox2.hitTestObject(omori6)) {
+		if( InFlag6== true || Wbox2Flag == true) {
+			//箱2の中身あり
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//箱2が空
+			event.target.x = Wbox2.x;
+			event.target.y = Wbox2.y;
+			Wbox2Flag = true;
+			InFlag6 = true; 
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag6="+InFlag6);
+		}
+	} else if( Wbox3.hitTestObject(omori6)) {
+		if( InFlag6== true  || Wbox3Flag == true ) {
+			//箱3の中身あり
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//箱3が空
+			event.target.x = Wbox3.x;
+			event.target.y = Wbox3.y;
+			Wbox3Flag = true;
+			InFlag6 = true; 
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag6="+InFlag6);
+		}
+	} else if( Hbox1.hitTestObject(omori6)) {
+		if( InFlag6== true || Hbox1Flag == true) {
+			//秤1の上に乗っている
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//秤1に乗ってない
+			event.target.x = Hbox1.x;
+			event.target.y = Hbox1.y;
+			Hbox1Flag = true;
+			InFlag6 = true;
+			Ga = Gram6;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag6="+InFlag6);
+		}
+	} else if( Hbox2.hitTestObject(omori6)) {
+		if( InFlag6== true || Hbox2Flag == true) {
+			//秤2の上に乗っている
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//秤2に乗ってない
+			event.target.x = Hbox2.x;
+			event.target.y = Hbox2.y;
+			Hbox2Flag = true;
+			InFlag6 = true;
+			Gb = Gram6;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag6="+InFlag6);
+		}	
+	} else {
+		Wbox1Flag = false;
+		Wbox2Flag = false;
+		Wbox3Flag = false;
+		Hbox1Flag = false;
+		Hbox2Flag = false;
+		InFlag1 = false;
+		InFlag2 = false;
+		InFlag3 = false;
+		InFlag4 = false;
+		InFlag5 = false;
+		InFlag6 = false;
+		InFlag7 = false;
+		InFlag8 = false;
+		omori1.x = 100;
+		omori1.y = 800;
+		omori2.x = 240;
+		omori2.y = 800;
+		omori3.x = 400;
+		omori3.y = 800;
+		omori4.x = 530;
+		omori4.y = 800;
+		omori5.x = 100;
+		omori5.y = 900;
+		omori6.x = 240;
+		omori6.y = 900;
+		omori7.x = 400;
+		omori7.y = 900;
+		omori8.x = 530;
+		omori8.y = 900;
+		trace("Wbox1Flag="+Wbox1Flag);
+		trace("Wbox2Flag="+Wbox2Flag);
+		trace("Wbox3Flag="+Wbox3Flag);
+		trace("Hbox1Flag="+Hbox1Flag);
+		trace("Hbox2Flag="+Hbox2Flag);
+		trace("InFlag1="+InFlag1);
+		trace("InFlag2="+InFlag2);
+		trace("InFlag3="+InFlag3);
+		trace("InFlag4="+InFlag4);
+		trace("InFlag5="+InFlag5);
+		trace("InFlag6="+InFlag6);
+		trace("InFlag7="+InFlag7);
+		trace("InFlag8="+InFlag8);
+		Wbox1Anser = false;
+		Wbox2Anser = false;
+		Wbox3Anser = false;
+	}
+}
+
+//紫おもり
+function onMouseUp7(event:MouseEvent):void {
+	PSE22.play(0,0);
+	event.target.stopDrag();
+	isMouseDown = false;
+	if( Wbox1.hitTestObject(omori7) ) {
+		if( InFlag7== true || Wbox1Flag == true ) {
+			//箱1の中身あり
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//箱１が空
+			event.target.x = Wbox1.x;
+			event.target.y = Wbox1.y;
+			Wbox1Flag = true;
+			InFlag7 = true; 
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag7="+InFlag7);
+		}
+	}else if(Wbox2.hitTestObject(omori7)) {
+		if( InFlag7== true || Wbox2Flag == true) {
+			//箱2の中身あり
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//箱2が空
+			event.target.x = Wbox2.x;
+			event.target.y = Wbox2.y;
+			Wbox2Flag = true;
+			InFlag7 = true; 
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag7="+InFlag7);
+		}
+	} else if( Wbox3.hitTestObject(omori7)) {
+		if( InFlag7== true  || Wbox3Flag == true ) {
+			//箱3の中身あり
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//箱3が空
+			event.target.x = Wbox3.x;
+			event.target.y = Wbox3.y;
+			Wbox3Flag = true;
+			InFlag7 = true; 
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag7="+InFlag7);
+		}
+	} else if( Hbox1.hitTestObject(omori7)) {
+		if( InFlag7== true || Hbox1Flag == true) {
+			//秤1の上に乗っている
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//秤1に乗ってない
+			event.target.x = Hbox1.x;
+			event.target.y = Hbox1.y;
+			Hbox1Flag = true;
+			InFlag7 = true;
+			Ga = Gram7;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag7="+InFlag7);
+		}
+	} else if( Hbox2.hitTestObject(omori7)) {
+		if( InFlag7== true || Hbox2Flag == true) {
+			//秤2の上に乗っている
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//秤2に乗ってない
+			event.target.x = Hbox2.x;
+			event.target.y = Hbox2.y;
+			Hbox2Flag = true;
+			InFlag7 = true;
+			Gb = Gram7;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag7="+InFlag7);
+		}	
+	} else {
+		Wbox1Flag = false;
+		Wbox2Flag = false;
+		Wbox3Flag = false;
+		Hbox1Flag = false;
+		Hbox2Flag = false;
+		InFlag1 = false;
+		InFlag2 = false;
+		InFlag3 = false;
+		InFlag4 = false;
+		InFlag5 = false;
+		InFlag6 = false;
+		InFlag7 = false;
+		InFlag8 = false;
+		omori1.x = 100;
+		omori1.y = 800;
+		omori2.x = 240;
+		omori2.y = 800;
+		omori3.x = 400;
+		omori3.y = 800;
+		omori4.x = 530;
+		omori4.y = 800;
+		omori5.x = 100;
+		omori5.y = 900;
+		omori6.x = 240;
+		omori6.y = 900;
+		omori7.x = 400;
+		omori7.y = 900;
+		omori8.x = 530;
+		omori8.y = 900;
+		trace("Wbox1Flag="+Wbox1Flag);
+		trace("Wbox2Flag="+Wbox2Flag);
+		trace("Wbox3Flag="+Wbox3Flag);
+		trace("Hbox1Flag="+Hbox1Flag);
+		trace("Hbox2Flag="+Hbox2Flag);
+		trace("InFlag1="+InFlag1);
+		trace("InFlag2="+InFlag2);
+		trace("InFlag3="+InFlag3);
+		trace("InFlag4="+InFlag4);
+		trace("InFlag5="+InFlag5);
+		trace("InFlag6="+InFlag6);
+		trace("InFlag7="+InFlag7);
+		trace("InFlag8="+InFlag8);
+		Wbox1Anser = false;
+		Wbox2Anser = false;
+		Wbox3Anser = false;
+	}
+}
+
+//黒おもり
+function onMouseUp8(event:MouseEvent):void {
+	PSE22.play(0,0);
+	event.target.stopDrag();
+	isMouseDown = false;
+	if( Wbox1.hitTestObject(omori8) ) {
+		if( InFlag8== true || Wbox1Flag == true ) {
+			//箱1の中身あり
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//箱１が空
+			event.target.x = Wbox1.x;
+			event.target.y = Wbox1.y;
+			Wbox1Flag = true;
+			InFlag8 = true; 
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag8="+InFlag8);
+		}
+	}else if(Wbox2.hitTestObject(omori8)) {
+		if( InFlag8== true || Wbox2Flag == true) {
+			//箱2の中身あり
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//箱2が空
+			event.target.x = Wbox2.x;
+			event.target.y = Wbox2.y;
+			Wbox2Flag = true;
+			InFlag8 = true; 
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag8="+InFlag8);
+		}
+	} else if( Wbox3.hitTestObject(omori8)) {
+		if( InFlag8== true  || Wbox3Flag == true ) {
+			//箱3の中身あり
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//箱3が空
+			event.target.x = Wbox3.x;
+			event.target.y = Wbox3.y;
+			Wbox3Flag = true;
+			InFlag8 = true; 
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag4="+InFlag8);
+		}
+	} else if( Hbox1.hitTestObject(omori8)) {
+		if( InFlag8== true || Hbox1Flag == true) {
+			//秤1の上に乗っている
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//秤1に乗ってない
+			event.target.x = Hbox1.x;
+			event.target.y = Hbox1.y;
+			Hbox1Flag = true;
+			InFlag8 = true;
+			Ga = Gram8;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag8="+InFlag8);
+		}
+	} else if( Hbox2.hitTestObject(omori8)) {
+		if( InFlag8== true || Hbox2Flag == true) {
+			//秤2の上に乗っている
+			Wbox1Flag = false;
+			Wbox2Flag = false;
+			Wbox3Flag = false;
+			Hbox1Flag = false;
+			Hbox2Flag = false;
+			InFlag1 = false;
+			InFlag2 = false;
+			InFlag3 = false;
+			InFlag4 = false;
+			InFlag5 = false;
+			InFlag6 = false;
+			InFlag7 = false;
+			InFlag8 = false;
+			omori1.x = 100;
+			omori1.y = 800;
+			omori2.x = 240;
+			omori2.y = 800;
+			omori3.x = 400;
+			omori3.y = 800;
+			omori4.x = 530;
+			omori4.y = 800;
+			omori5.x = 100;
+			omori5.y = 900;
+			omori6.x = 240;
+			omori6.y = 900;
+			omori7.x = 400;
+			omori7.y = 900;
+			omori8.x = 530;
+			omori8.y = 900;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag1="+InFlag1);
+			trace("InFlag2="+InFlag2);
+			trace("InFlag3="+InFlag3);
+			trace("InFlag4="+InFlag4);
+			trace("InFlag5="+InFlag5);
+			trace("InFlag6="+InFlag6);
+			trace("InFlag7="+InFlag7);
+			trace("InFlag8="+InFlag8);
+			Wbox1Anser = false;
+			Wbox2Anser = false;
+			Wbox3Anser = false;
+		} else {
+			//秤2に乗ってない
+			event.target.x = Hbox2.x;
+			event.target.y = Hbox2.y;
+			Hbox2Flag = true;
+			InFlag8 = true;
+			Gb = Gram8;
+			trace("Wbox1Flag="+Wbox1Flag);
+			trace("Wbox2Flag="+Wbox2Flag);
+			trace("Wbox3Flag="+Wbox3Flag);
+			trace("Hbox1Flag="+Hbox1Flag);
+			trace("Hbox2Flag="+Hbox2Flag);
+			trace("InFlag8="+InFlag8);
+		}	
+	} else {
+		Wbox1Flag = false;
+		Wbox2Flag = false;
+		Wbox3Flag = false;
+		Hbox1Flag = false;
+		Hbox2Flag = false;
+		InFlag1 = false;
+		InFlag2 = false;
+		InFlag3 = false;
+		InFlag4 = false;
+		InFlag5 = false;
+		InFlag6 = false;
+		InFlag7 = false;
+		InFlag8 = false;
+		omori1.x = 100;
+		omori1.y = 800;
+		omori2.x = 240;
+		omori2.y = 800;
+		omori3.x = 400;
+		omori3.y = 800;
+		omori4.x = 530;
+		omori4.y = 800;
+		omori5.x = 100;
+		omori5.y = 900;
+		omori6.x = 240;
+		omori6.y = 900;
+		omori7.x = 400;
+		omori7.y = 900;
+		omori8.x = 530;
+		omori8.y = 900;
+		trace("Wbox1Flag="+Wbox1Flag);
+		trace("Wbox2Flag="+Wbox2Flag);
+		trace("Wbox3Flag="+Wbox3Flag);
+		trace("Hbox1Flag="+Hbox1Flag);
+		trace("Hbox2Flag="+Hbox2Flag);
+		trace("InFlag1="+InFlag1);
+		trace("InFlag2="+InFlag2);
+		trace("InFlag3="+InFlag3);
+		trace("InFlag4="+InFlag4);
+		trace("InFlag5="+InFlag5);
+		trace("InFlag6="+InFlag6);
+		trace("InFlag7="+InFlag7);
+		trace("InFlag8="+InFlag8);
+		Wbox1Anser = false;
+		Wbox2Anser = false;
+		Wbox3Anser = false;
+	}
+}
+
+//Flame21
+stop();
+stage.addEventListener(TransformGestureEvent.GESTURE_SWIPE,  onSwipe3);
+Cpanel1.addEventListener(MouseEvent.MOUSE_DOWN, PanelDown1);
+Cpanel2.addEventListener(MouseEvent.MOUSE_DOWN, PanelDown2);
+Cpanel3.addEventListener(MouseEvent.MOUSE_DOWN, PanelDown3);
+Cpanel4.addEventListener(MouseEvent.MOUSE_DOWN, PanelDown4);
+Cpanel5.addEventListener(MouseEvent.MOUSE_DOWN, PanelDown5);
+Cpanel6.addEventListener(MouseEvent.MOUSE_DOWN, PanelDown6);
+Cpanel7.addEventListener(MouseEvent.MOUSE_DOWN, PanelDown7);
+Cpanel8.addEventListener(MouseEvent.MOUSE_DOWN, PanelDown8);
+Cpanel9.addEventListener(MouseEvent.MOUSE_DOWN, PanelDown9);
+Cpanel10.addEventListener(MouseEvent.MOUSE_DOWN, PanelDown10);
+Cpanel11.addEventListener(MouseEvent.MOUSE_DOWN, PanelDown11);
+Cpanel12.addEventListener(MouseEvent.MOUSE_DOWN, PanelDown12);
+Cpanel13.addEventListener(MouseEvent.MOUSE_DOWN, PanelDown13);
+Cpanel14.addEventListener(MouseEvent.MOUSE_DOWN, PanelDown14);
+Cpanel15.addEventListener(MouseEvent.MOUSE_DOWN, PanelDown15);
+Cpanel16.addEventListener(MouseEvent.MOUSE_DOWN, PanelDown16);
+EDmaru.addEventListener(MouseEvent.MOUSE_DOWN, EDmaruDown);
+function onSwipe3(ev:TransformGestureEvent):void{
+	if(ev.offsetX == 1){
+		stage.removeEventListener(TransformGestureEvent.GESTURE_SWIPE,onSwipe3);
+		stage.removeEventListener(Event.ENTER_FRAME, ColorChange);
+		Cpanel1.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown1);
+		Cpanel2.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown2);
+		Cpanel3.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown3);
+		Cpanel4.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown4);
+		Cpanel5.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown5);
+		Cpanel6.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown6);
+		Cpanel7.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown7);
+		Cpanel8.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown8);
+		Cpanel9.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown9);
+		Cpanel10.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown10);
+		Cpanel11.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown11);
+		Cpanel12.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown12);
+		Cpanel13.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown13);
+		Cpanel14.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown14);
+		Cpanel15.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown15);
+		Cpanel16.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown16);
+		EDmaru.removeEventListener(MouseEvent.MOUSE_DOWN, EDmaruDown);
+		Color1 = 0;
+		Color2 = 0;
+		Color3 = 0;
+		Color4 = 0;
+		Color5 = 1;
+		Color6 = 1;
+		Color7 = 1;
+		Color8 = 1;
+		Color9 = 2;
+		Color10 = 2;
+		Color11 = 2;
+		Color12 = 2;
+		Color13 = 3;
+		Color14 = 3;
+		Color15 = 3;
+		Color16 = 3;
+		PanelFlag1 = false;
+		PanelFlag2 = false;
+		PanelFlag3 = false;
+		PanelFlag4 = false;
+		PanelFlag5 = false;
+		PanelFlag6 = false;
+		PanelFlag7 = false;
+		PanelFlag8 = false;
+		PanelFlag9 = false;
+		PanelFlag10 = false;
+		PanelFlag11 = false;
+		PanelFlag12 = false;
+		PanelFlag13 = false;
+		PanelFlag14 = false;
+		PanelFlag15 = false;
+		PanelFlag16 = false;
+		gotoAndStop("play4");	
+	}
+	if(ev.offsetX == -1){
+		stage.removeEventListener(TransformGestureEvent.GESTURE_SWIPE,onSwipe3);
+		stage.removeEventListener(Event.ENTER_FRAME, ColorChange);
+		Cpanel1.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown1);
+		Cpanel2.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown2);
+		Cpanel3.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown3);
+		Cpanel4.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown4);
+		Cpanel5.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown5);
+		Cpanel6.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown6);
+		Cpanel7.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown7);
+		Cpanel8.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown8);
+		Cpanel9.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown9);
+		Cpanel10.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown10);
+		Cpanel11.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown11);
+		Cpanel12.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown12);
+		Cpanel13.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown13);
+		Cpanel14.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown14);
+		Cpanel15.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown15);
+		Cpanel16.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown16);
+		Cpanel1.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown1);
+		Cpanel2.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown2);
+		Cpanel3.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown3);
+		Cpanel4.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown4);
+		Cpanel5.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown5);
+		Cpanel6.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown6);
+		Cpanel7.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown7);
+		Cpanel8.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown8);
+		Cpanel9.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown9);
+		Cpanel10.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown10);
+		Cpanel11.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown11);
+		Cpanel12.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown12);
+		Cpanel13.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown13);
+		Cpanel14.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown14);
+		Cpanel15.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown15);
+		Cpanel16.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown16);
+		EDmaru.removeEventListener(MouseEvent.MOUSE_DOWN, EDmaruDown);
+		Color1 = 0;
+		Color2 = 0;
+		Color3 = 0;
+		Color4 = 0;
+		Color5 = 1;
+		Color6 = 1;
+		Color7 = 1;
+		Color8 = 1;
+		Color9 = 2;
+		Color10 = 2;
+		Color11 = 2;
+		Color12 = 2;
+		Color13 = 3;
+		Color14 = 3;
+		Color15 = 3;
+		Color16 = 3;
+		PanelFlag1 = false;
+		PanelFlag2 = false;
+		PanelFlag3 = false;
+		PanelFlag4 = false;
+		PanelFlag5 = false;
+		PanelFlag6 = false;
+		PanelFlag7 = false;
+		PanelFlag8 = false;
+		PanelFlag9 = false;
+		PanelFlag10 = false;
+		PanelFlag11 = false;
+		PanelFlag12 = false;
+		PanelFlag13 = false;
+		PanelFlag14 = false;
+		PanelFlag15 = false;
+		PanelFlag16 = false;
+		gotoAndStop("play2");
+	}
+}
+//EDmaruプッシュ(エンディングへ)
+function EDmaruDown(event:MouseEvent):void {
+	stage.removeEventListener(TransformGestureEvent.GESTURE_SWIPE,onSwipe3);
+	stage.removeEventListener(Event.ENTER_FRAME, ColorChange);
+	EDmaru.removeEventListener(MouseEvent.MOUSE_DOWN, EDmaruDown);
+	Color1 = 0;
+	Color2 = 0;
+	Color3 = 0;
+	Color4 = 0;
+	Color5 = 1;
+	Color6 = 1;
+	Color7 = 1;
+	Color8 = 1;
+	Color9 = 2;
+	Color10 = 2;
+	Color11 = 2;
+	Color12 = 2;
+	Color13 = 3;
+	Color14 = 3;
+	Color15 = 3;
+	Color16 = 3;
+	PanelFlag1 = false;
+	PanelFlag2 = false;
+	PanelFlag3 = false;
+	PanelFlag4 = false;
+	PanelFlag5 = false;
+	PanelFlag6 = false;
+	PanelFlag7 = false;
+	PanelFlag8 = false;
+	PanelFlag9 = false;
+	PanelFlag10 = false;
+	PanelFlag11 = false;
+	PanelFlag12 = false;
+	PanelFlag13 = false;
+	PanelFlag14 = false;
+	PanelFlag15 = false;
+	PanelFlag16 = false;
+	PSEenter.play(0,0);
+	setTimeout(function(){
+		gotoAndStop("play5");
+	},2500);
+}
+
+//Panel1
+function PanelDown1(event:MouseEvent):void {
+	trace("tuuka");
+	if( PanelFlag1 == true){
+		PanelFlag1 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag2 == true){
+		Color1 = Color2;
+		PanelFlag2 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag3 == true){
+		Color1 = Color3;
+		PanelFlag3 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag4 == true){
+		Color1 = Color4;
+		PanelFlag4 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag5 == true){
+		Color1 = Color5;
+		PanelFlag5 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag6 == true){
+		Color1 = Color6;
+		PanelFlag6 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag7 == true){
+		Color1 = Color7;
+		PanelFlag7 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag8 == true){
+		Color1 = Color8;
+		PanelFlag8 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag9 == true){
+		Color1 = Color9;
+		PanelFlag9 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag10 == true){
+		Color1 = Color10;
+		PanelFlag10 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag11 == true){
+		Color1 = Color11;
+		PanelFlag11 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag12 == true){
+		Color1 = Color12;
+		PanelFlag12 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag13 == true){
+		Color1 = Color13;
+		PanelFlag13 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag14 == true){
+		Color1 = Color14;
+		PanelFlag14 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag15 == true){
+		Color1 = Color15;
+		PanelFlag15 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag16 == true){
+		Color1 = Color16;
+		PanelFlag16 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag1 == false ){
+		PanelFlag1 = true;
+		PSE31.play(0,0);
+		return;
+	}
+	
+}
+
+//Panel2
+function PanelDown2(event:MouseEvent):void {
+	trace("tuuka");
+	if( PanelFlag2 == true){
+		PanelFlag2 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag1 == true){
+		Color2 = Color1;
+		PanelFlag1 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag3 == true){
+		Color2 = Color3;
+		PanelFlag3 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag4 == true){
+		Color2 = Color4;
+		PanelFlag4 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag5 == true){
+		Color2 = Color5;
+		PanelFlag5 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag6 == true){
+		Color2 = Color6;
+		PanelFlag6 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag7 == true){
+		Color2 = Color7;
+		PanelFlag7 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag8 == true){
+		Color2 = Color8;
+		PanelFlag8 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag9 == true){
+		Color2 = Color9;
+		PanelFlag9 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag10 == true){
+		Color2 = Color10;
+		PanelFlag10 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag11 == true){
+		Color2 = Color11;
+		PanelFlag11 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag12 == true){
+		Color2 = Color12;
+		PanelFlag12 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag13 == true){
+		Color2 = Color13;
+		PanelFlag13 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag14 == true){
+		Color2 = Color14;
+		PanelFlag14 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag15 == true){
+		Color2 = Color15;
+		PanelFlag15 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag16 == true){
+		Color2 = Color16;
+		PanelFlag16 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag2 == false ){
+		PanelFlag2 = true;
+		PSE31.play(0,0);
+		return;
+	}
+	
+}
+
+//Panel3
+function PanelDown3(event:MouseEvent):void {
+	trace("tuuka");
+	if( PanelFlag3 == true){
+		PanelFlag3 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag2 == true){
+		Color3 = Color2;
+		PanelFlag2 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag1 == true){
+		Color3 = Color1;
+		PanelFlag1 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag4 == true){
+		Color3 = Color4;
+		PanelFlag4 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag5 == true){
+		Color3 = Color5;
+		PanelFlag5 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag6 == true){
+		Color3 = Color6;
+		PanelFlag6 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag7 == true){
+		Color3 = Color7;
+		PanelFlag7 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag8 == true){
+		Color3 = Color8;
+		PanelFlag8 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag9 == true){
+		Color3 = Color9;
+		PanelFlag9 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag10 == true){
+		Color3 = Color10;
+		PanelFlag10 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag11 == true){
+		Color3 = Color11;
+		PanelFlag11 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag12 == true){
+		Color3 = Color12;
+		PanelFlag12 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag13 == true){
+		Color3 = Color13;
+		PanelFlag13 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag14 == true){
+		Color3 = Color14;
+		PanelFlag14 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag15 == true){
+		Color3 = Color15;
+		PanelFlag15 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag16 == true){
+		Color3 = Color16;
+		PanelFlag16 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag3 == false ){
+		PanelFlag3 = true;
+		PSE31.play(0,0);
+		return;
+	}
+	
+}
+
+//Panel4
+function PanelDown4(event:MouseEvent):void {
+	trace("tuuka");
+	if( PanelFlag4 == true){
+		PanelFlag4 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag2 == true){
+		Color4 = Color2;
+		PanelFlag2 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag3 == true){
+		Color4 = Color3;
+		PanelFlag3 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag1 == true){
+		Color4 = Color1;
+		PanelFlag1 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag5 == true){
+		Color4 = Color5;
+		PanelFlag5 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag6 == true){
+		Color4 = Color6;
+		PanelFlag6 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag7 == true){
+		Color4 = Color7;
+		PanelFlag7 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag8 == true){
+		Color4 = Color8;
+		PanelFlag8 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag9 == true){
+		Color4 = Color9;
+		PanelFlag9 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag10 == true){
+		Color4 = Color10;
+		PanelFlag10 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag11 == true){
+		Color4 = Color11;
+		PanelFlag11 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag12 == true){
+		Color4 = Color12;
+		PanelFlag12 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag13 == true){
+		Color4 = Color13;
+		PanelFlag13 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag14 == true){
+		Color4 = Color14;
+		PanelFlag14 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag15 == true){
+		Color4 = Color15;
+		PanelFlag15 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag16 == true){
+		Color4 = Color16;
+		PanelFlag16 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag4 == false ){
+		PanelFlag4 = true;
+		PSE31.play(0,0);
+		return;
+	}
+	
+}
+
+//Panel5
+function PanelDown5(event:MouseEvent):void {
+	trace("tuuka");
+	if( PanelFlag5 == true){
+		PanelFlag5 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag2 == true){
+		Color5 = Color2;
+		PanelFlag2 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag3 == true){
+		Color5 = Color3;
+		PanelFlag3 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag4 == true){
+		Color5 = Color4;
+		PanelFlag4 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag1 == true){
+		Color5 = Color1;
+		PanelFlag1 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag6 == true){
+		Color5 = Color6;
+		PanelFlag6 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag7 == true){
+		Color5 = Color7;
+		PanelFlag7 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag8 == true){
+		Color5 = Color8;
+		PanelFlag8 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag9 == true){
+		Color5 = Color9;
+		PanelFlag9 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag10 == true){
+		Color5 = Color10;
+		PanelFlag10 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag11 == true){
+		Color5 = Color11;
+		PanelFlag11 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag12 == true){
+		Color5 = Color12;
+		PanelFlag12 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag13 == true){
+		Color5 = Color13;
+		PanelFlag13 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag14 == true){
+		Color5 = Color14;
+		PanelFlag14 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag15 == true){
+		Color5 = Color15;
+		PanelFlag15 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag16 == true){
+		Color5 = Color16;
+		PanelFlag16 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag5 == false ){
+		PanelFlag5 = true;
+		PSE31.play(0,0);
+		return;
+	}
+	
+}
+
+//Panel6
+function PanelDown6(event:MouseEvent):void {
+	trace("tuuka");
+	if( PanelFlag6 == true){
+		PanelFlag6 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag2 == true){
+		Color6 = Color2;
+		PanelFlag2 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag3 == true){
+		Color6 = Color3;
+		PanelFlag3 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag4 == true){
+		Color6 = Color4;
+		PanelFlag4 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag5 == true){
+		Color6 = Color5;
+		PanelFlag5 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag1 == true){
+		Color6 = Color1;
+		PanelFlag1 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag7 == true){
+		Color6 = Color7;
+		PanelFlag7 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag8 == true){
+		Color6 = Color8;
+		PanelFlag8 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag9 == true){
+		Color6 = Color9;
+		PanelFlag9 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag10 == true){
+		Color6 = Color10;
+		PanelFlag10 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag11 == true){
+		Color6 = Color11;
+		PanelFlag11 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag12 == true){
+		Color6 = Color12;
+		PanelFlag12 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag13 == true){
+		Color6 = Color13;
+		PanelFlag13 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag14 == true){
+		Color6 = Color14;
+		PanelFlag14 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag15 == true){
+		Color6 = Color15;
+		PanelFlag15 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag16 == true){
+		Color6 = Color16;
+		PanelFlag16 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag6 == false ){
+		PanelFlag6 = true;
+		PSE31.play(0,0);
+		return;
+	}
+	
+}
+
+//Panel7
+function PanelDown7(event:MouseEvent):void {
+	trace("tuuka");
+	if( PanelFlag7 == true){
+		PanelFlag7 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag2 == true){
+		Color7 = Color2;
+		PanelFlag2 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag3 == true){
+		Color7 = Color3;
+		PanelFlag3 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag4 == true){
+		Color7 = Color4;
+		PanelFlag4 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag5 == true){
+		Color7 = Color5;
+		PanelFlag5 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag6 == true){
+		Color7 = Color6;
+		PanelFlag6 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag1 == true){
+		Color7 = Color1;
+		PanelFlag1 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag8 == true){
+		Color7 = Color8;
+		PanelFlag8 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag9 == true){
+		Color7 = Color9;
+		PanelFlag9 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag10 == true){
+		Color7 = Color10;
+		PanelFlag10 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag11 == true){
+		Color7 = Color11;
+		PanelFlag11 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag12 == true){
+		Color7 = Color12;
+		PanelFlag12 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag13 == true){
+		Color7 = Color13;
+		PanelFlag13 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag14 == true){
+		Color7 = Color14;
+		PanelFlag14 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag15 == true){
+		Color7 = Color15;
+		PanelFlag15 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag16 == true){
+		Color7 = Color16;
+		PanelFlag16 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag7 == false ){
+		PanelFlag7 = true;
+		PSE31.play(0,0);
+		return;
+	}
+	
+}
+
+//Panel8
+function PanelDown8(event:MouseEvent):void {
+	trace("tuuka");
+	if( PanelFlag8 == true){
+		PanelFlag8 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag2 == true){
+		Color8 = Color2;
+		PanelFlag2 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag3 == true){
+		Color8 = Color3;
+		PanelFlag3 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag4 == true){
+		Color8 = Color4;
+		PanelFlag4 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag5 == true){
+		Color8 = Color5;
+		PanelFlag5 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag6 == true){
+		Color8 = Color6;
+		PanelFlag6 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag7 == true){
+		Color8 = Color7;
+		PanelFlag7 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag1 == true){
+		Color8 = Color1;
+		PanelFlag1 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag9 == true){
+		Color8 = Color9;
+		PanelFlag9 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag10 == true){
+		Color8 = Color10;
+		PanelFlag10 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag11 == true){
+		Color8 = Color11;
+		PanelFlag11 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag12 == true){
+		Color8 = Color12;
+		PanelFlag12 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag13 == true){
+		Color8 = Color13;
+		PanelFlag13 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag14 == true){
+		Color8 = Color14;
+		PanelFlag14 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag15 == true){
+		Color8 = Color15;
+		PanelFlag15 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag16 == true){
+		Color8 = Color16;
+		PanelFlag16 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag8 == false ){
+		PanelFlag8 = true;
+		PSE31.play(0,0);
+		return;
+	}
+	
+}
+
+//Panel9
+function PanelDown9(event:MouseEvent):void {
+	trace("tuuka");
+	if( PanelFlag9 == true){
+		PanelFlag9 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag2 == true){
+		Color9 = Color2;
+		PanelFlag2 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag3 == true){
+		Color9 = Color3;
+		PanelFlag3 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag4 == true){
+		Color9 = Color4;
+		PanelFlag4 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag5 == true){
+		Color9 = Color5;
+		PanelFlag5 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag6 == true){
+		Color9 = Color6;
+		PanelFlag6 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag7 == true){
+		Color9 = Color7;
+		PanelFlag7 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag8 == true){
+		Color9 = Color8;
+		PanelFlag8 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag1 == true){
+		Color9 = Color1;
+		PanelFlag1 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag10 == true){
+		Color9 = Color10;
+		PanelFlag10 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag11 == true){
+		Color9 = Color11;
+		PanelFlag11 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag12 == true){
+		Color9 = Color12;
+		PanelFlag12 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag13 == true){
+		Color9 = Color13;
+		PanelFlag13 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag14 == true){
+		Color9 = Color14;
+		PanelFlag14 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag15 == true){
+		Color9 = Color15;
+		PanelFlag15 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag16 == true){
+		Color9 = Color16;
+		PanelFlag16 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag9 == false ){
+		PanelFlag9 = true;
+		PSE31.play(0,0);
+		return;
+	}
+	
+}
+
+//Panel10
+function PanelDown10(event:MouseEvent):void {
+	trace("tuuka");
+	if( PanelFlag10 == true){
+		PanelFlag10 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag2 == true){
+		Color10 = Color2;
+		PanelFlag2 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag3 == true){
+		Color10 = Color3;
+		PanelFlag3 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag4 == true){
+		Color10 = Color4;
+		PanelFlag4 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag5 == true){
+		Color10 = Color5;
+		PanelFlag5 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag6 == true){
+		Color10 = Color6;
+		PanelFlag6 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag7 == true){
+		Color10 = Color7;
+		PanelFlag7 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag8 == true){
+		Color10 = Color8;
+		PanelFlag8 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag9 == true){
+		Color10 = Color9;
+		PanelFlag9 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag1 == true){
+		Color10 = Color1;
+		PanelFlag1 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag11 == true){
+		Color10 = Color11;
+		PanelFlag11 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag12 == true){
+		Color10 = Color12;
+		PanelFlag12 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag13 == true){
+		Color10 = Color13;
+		PanelFlag13 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag14 == true){
+		Color10 = Color14;
+		PanelFlag14 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag15 == true){
+		Color10 = Color15;
+		PanelFlag15 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag16 == true){
+		Color10 = Color16;
+		PanelFlag16 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag10 == false ){
+		PanelFlag10 = true;
+		PSE31.play(0,0);
+		return;
+	}
+	
+}
+
+//Panel11
+function PanelDown11(event:MouseEvent):void {
+	trace("tuuka");
+	if( PanelFlag11 == true){
+		PanelFlag11 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag2 == true){
+		Color11 = Color2;
+		PanelFlag2 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag3 == true){
+		Color11 = Color3;
+		PanelFlag3 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag4 == true){
+		Color11 = Color4;
+		PanelFlag4 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag5 == true){
+		Color11 = Color5;
+		PanelFlag5 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag6 == true){
+		Color11 = Color6;
+		PanelFlag6 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag7 == true){
+		Color11 = Color7;
+		PanelFlag7 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag8 == true){
+		Color11 = Color8;
+		PanelFlag8 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag9 == true){
+		Color11 = Color9;
+		PanelFlag9 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag10 == true){
+		Color11 = Color10;
+		PanelFlag10 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag1 == true){
+		Color11 = Color1;
+		PanelFlag1 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag12 == true){
+		Color11 = Color12;
+		PanelFlag12 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag13 == true){
+		Color11 = Color13;
+		PanelFlag13 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag14 == true){
+		Color11 = Color14;
+		PanelFlag14 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag15 == true){
+		Color11 = Color15;
+		PanelFlag15 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag16 == true){
+		Color11 = Color16;
+		PanelFlag16 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag11 == false ){
+		PanelFlag11 = true;
+		PSE31.play(0,0);
+		return;
+	}
+	
+}
+
+//Panel12
+function PanelDown12(event:MouseEvent):void {
+	trace("tuuka");
+	if( PanelFlag12 == true){
+		PanelFlag12 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag2 == true){
+		Color12 = Color2;
+		PanelFlag2 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag3 == true){
+		Color12 = Color3;
+		PanelFlag3 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag4 == true){
+		Color12 = Color4;
+		PanelFlag4 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag5 == true){
+		Color12 = Color5;
+		PanelFlag5 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag6 == true){
+		Color12 = Color6;
+		PanelFlag6 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag7 == true){
+		Color12 = Color7;
+		PanelFlag7 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag8 == true){
+		Color12 = Color8;
+		PanelFlag8 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag9 == true){
+		Color12 = Color9;
+		PanelFlag9 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag10 == true){
+		Color12 = Color10;
+		PanelFlag10 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag11 == true){
+		Color12 = Color11;
+		PanelFlag11 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag1 == true){
+		Color12 = Color1;
+		PanelFlag1 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag13 == true){
+		Color12 = Color13;
+		PanelFlag13 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag14 == true){
+		Color12 = Color14;
+		PanelFlag14 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag15 == true){
+		Color12 = Color15;
+		PanelFlag15 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag16 == true){
+		Color12 = Color16;
+		PanelFlag16 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag12 == false ){
+		PanelFlag12 = true;
+		PSE31.play(0,0);
+		return;
+	}
+	
+}
+
+//Panel13
+function PanelDown13(event:MouseEvent):void {
+	trace("tuuka");
+	if( PanelFlag13 == true){
+		PanelFlag13 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag2 == true){
+		Color13 = Color2;
+		PanelFlag2 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag3 == true){
+		Color13 = Color3;
+		PanelFlag3 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag4 == true){
+		Color13 = Color4;
+		PanelFlag4 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag5 == true){
+		Color13 = Color5;
+		PanelFlag5 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag6 == true){
+		Color13 = Color6;
+		PanelFlag6 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag7 == true){
+		Color13 = Color7;
+		PanelFlag7 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag8 == true){
+		Color13 = Color8;
+		PanelFlag8 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag9 == true){
+		Color13 = Color9;
+		PanelFlag9 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag10 == true){
+		Color13 = Color10;
+		PanelFlag10 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag11 == true){
+		Color13 = Color11;
+		PanelFlag11 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag12 == true){
+		Color13 = Color12;
+		PanelFlag12 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag1 == true){
+		Color13 = Color1;
+		PanelFlag1 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag14 == true){
+		Color13 = Color14;
+		PanelFlag14 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag15 == true){
+		Color13 = Color15;
+		PanelFlag15 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag16 == true){
+		Color13 = Color16;
+		PanelFlag16 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag13 == false ){
+		PanelFlag13 = true;
+		PSE31.play(0,0);
+		return;
+	}
+	
+}
+
+//Panel14
+function PanelDown14(event:MouseEvent):void {
+	trace("tuuka");
+	if( PanelFlag14 == true){
+		PanelFlag14 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag2 == true){
+		Color14 = Color2;
+		PanelFlag2 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag3 == true){
+		Color14 = Color3;
+		PanelFlag3 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag4 == true){
+		Color14 = Color4;
+		PanelFlag4 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag5 == true){
+		Color14 = Color5;
+		PanelFlag5 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag6 == true){
+		Color14 = Color6;
+		PanelFlag6 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag7 == true){
+		Color14 = Color7;
+		PanelFlag7 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag8 == true){
+		Color14 = Color8;
+		PanelFlag8 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag9 == true){
+		Color14 = Color9;
+		PanelFlag9 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag10 == true){
+		Color14 = Color10;
+		PanelFlag10 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag11 == true){
+		Color14 = Color11;
+		PanelFlag11 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag12 == true){
+		Color14 = Color12;
+		PanelFlag12 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag13 == true){
+		Color14 = Color13;
+		PanelFlag13 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag1 == true){
+		Color14 = Color1;
+		PanelFlag1 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag15 == true){
+		Color14 = Color15;
+		PanelFlag15 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag16 == true){
+		Color14 = Color16;
+		PanelFlag16 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag14 == false ){
+		PanelFlag14 = true;
+		PSE31.play(0,0);
+		return;
+	}
+	
+}
+
+//Panel15
+function PanelDown15(event:MouseEvent):void {
+	trace("tuuka");
+	if( PanelFlag15 == true){
+		PanelFlag15 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag2 == true){
+		Color15 = Color2;
+		PanelFlag2 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag3 == true){
+		Color15 = Color3;
+		PanelFlag3 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag4 == true){
+		Color15 = Color4;
+		PanelFlag4 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag5 == true){
+		Color15 = Color5;
+		PanelFlag5 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag6 == true){
+		Color15 = Color6;
+		PanelFlag6 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag7 == true){
+		Color15 = Color7;
+		PanelFlag7 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag8 == true){
+		Color15 = Color8;
+		PanelFlag8 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag9 == true){
+		Color15 = Color9;
+		PanelFlag9 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag10 == true){
+		Color15 = Color10;
+		PanelFlag10 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag11 == true){
+		Color15 = Color11;
+		PanelFlag11 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag12 == true){
+		Color15 = Color12;
+		PanelFlag12 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag13 == true){
+		Color15 = Color13;
+		PanelFlag13 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag14 == true){
+		Color15 = Color14;
+		PanelFlag14 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag1 == true){
+		Color15 = Color1;
+		PanelFlag1 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag16 == true){
+		Color15 = Color16;
+		PanelFlag16 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag15 == false ){
+		PanelFlag15 = true;
+		PSE31.play(0,0);
+		return;
+	}
+	
+}
+
+//Panel16
+function PanelDown16(event:MouseEvent):void {
+	trace("tuuka");
+	if( PanelFlag16 == true){
+		PanelFlag16 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag2 == true){
+		Color16 = Color2;
+		PanelFlag2 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag3 == true){
+		Color16 = Color3;
+		PanelFlag3 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag4 == true){
+		Color16 = Color4;
+		PanelFlag4 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag5 == true){
+		Color16 = Color5;
+		PanelFlag5 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag6 == true){
+		Color16 = Color6;
+		PanelFlag6 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag7 == true){
+		Color16 = Color7;
+		PanelFlag7 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag8 == true){
+		Color16 = Color8;
+		PanelFlag8 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag9 == true){
+		Color16 = Color9;
+		PanelFlag9 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag10 == true){
+		Color16 = Color10;
+		PanelFlag10 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag11 == true){
+		Color16 = Color11;
+		PanelFlag11 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag12 == true){
+		Color16 = Color12;
+		PanelFlag12 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag13 == true){
+		Color16 = Color13;
+		PanelFlag13 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag14 == true){
+		Color16 = Color14;
+		PanelFlag14 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag15 == true){
+		Color16 = Color15;
+		PanelFlag15 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag1 == true){
+		Color16 = Color1;
+		PanelFlag1 = false;
+		PSE32.play(0,0);
+		return;
+	} else if ( PanelFlag16 == false ){
+		PanelFlag16 = true;
+		PSE31.play(0,0);
+		return;
+	}
+	
+}
+stage.addEventListener(Event.ENTER_FRAME, ColorChange);
+function ColorChange( event:Event){
+	//正解EDボタン解放
+	if( Color1 == 1 &&  Color2 == 3 && Color3 == 1 && Color4 == 2 && Color5 == 0 && Color6 == 2 && Color7 == 2 && Color8 == 0 && Color9 == 3 && Color10 == 0 && Color11 == 3 && Color12 == 3 && Color13 == 2 && Color14 == 0 && Color15 == 1 && Color16 == 1 ){
+		///////remove
+		Cpanel1.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown1);
+		Cpanel2.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown2);
+		Cpanel3.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown3);
+		Cpanel4.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown4);
+		Cpanel5.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown5);
+		Cpanel6.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown6);
+		Cpanel7.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown7);
+		Cpanel8.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown8);
+		Cpanel9.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown9);
+		Cpanel10.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown10);
+		Cpanel11.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown11);
+		Cpanel12.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown12);
+		Cpanel13.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown13);
+		Cpanel14.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown14);
+		Cpanel15.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown15);
+		Cpanel16.removeEventListener(MouseEvent.MOUSE_DOWN, PanelDown16);
+		Cpanel1.rotation -= 2;
+		Cpanel5.rotation -= 2;
+		Cpanel9.rotation -= 2;
+		Cpanel13.rotation -= 2;
+		Cpanel2.y = -100;
+		Cpanel3.y = -100;
+		Cpanel6.y = -100;
+		Cpanel7.y = -100;
+		Cpanel10.y = -100;
+		Cpanel11.y = -100;
+		Cpanel14.y = -100;
+		Cpanel15.y = -100;
+		Cpanel4.rotation += 2;
+		Cpanel8.rotation += 2;
+		Cpanel12.rotation += 2;
+		Cpanel16.rotation += 2;	
+		EDmaru.rotation -= 0.1;
+		EDmaru.x = stage.stageWidth/2;
+		EDmaru.y = stage.stageHeight/2;
+		chanPlay.stop();
+}
+	//Color1
+	if( Color1 == 0 ){
+		//赤
+		if( PanelFlag1 == true ){
+			My_color1.color = 0xFF0000;
+			Cpanel1.transform.colorTransform = My_color1;
+			Cpanel1.alpha = 0.5;
+		} else if( PanelFlag1 == false ){			
+			My_color1.color = 0xFF0000;
+			Cpanel1.transform.colorTransform = My_color1;
+		}
+	} else if ( Color1 == 1 ){
+		//緑
+		if( PanelFlag1 == true ){
+			My_color1.color = 0x00FF00;
+			Cpanel1.transform.colorTransform = My_color1;
+			Cpanel1.alpha = 0.5;
+		} else {			
+			My_color1.color = 0x00FF00;
+			Cpanel1.transform.colorTransform = My_color1;
+		}
+	} else if ( Color1 == 2){
+		//青
+		if( PanelFlag1 == true ){
+			My_color1.color = 0x0000FF;
+			Cpanel1.transform.colorTransform = My_color1;
+			Cpanel1.alpha = 0.5;
+		} else {			
+			My_color1.color = 0x0000FF;
+			Cpanel1.transform.colorTransform = My_color1;
+		}
+	} else if ( Color1 == 3 ){
+		//黄色
+		if( PanelFlag1 == true ){
+			My_color1.color = 0xFFFF00;
+			Cpanel1.transform.colorTransform = My_color1;
+			Cpanel1.alpha = 0.5;
+		} else {			
+			My_color1.color = 0xFFFF00;
+			Cpanel1.transform.colorTransform = My_color1;
+		}
+	}
+	
+	//Color2
+	if( Color2 == 0 ){
+		//赤
+		if( PanelFlag2 == true ){
+			My_color2.color = 0xFF0000;
+			Cpanel2.transform.colorTransform = My_color2;
+			Cpanel2.alpha = 0.5;
+		} else if( PanelFlag2 == false ){			
+			My_color2.color = 0xFF0000;
+			Cpanel2.transform.colorTransform = My_color2;
+		}
+	} else if ( Color2 == 1 ){
+		//緑
+		if( PanelFlag2 == true ){
+			My_color2.color = 0x00FF00;
+			Cpanel2.transform.colorTransform = My_color2;
+			Cpanel2.alpha = 0.5;
+		} else {			
+			My_color2.color = 0x00FF00;
+			Cpanel2.transform.colorTransform = My_color2;
+		}
+	} else if ( Color2 == 2){
+		//青
+		if( PanelFlag2 == true ){
+			My_color2.color = 0x0000FF;
+			Cpanel2.transform.colorTransform = My_color2;
+			Cpanel2.alpha = 0.5;
+		} else {			
+			My_color2.color = 0x0000FF;
+			Cpanel2.transform.colorTransform = My_color2;
+		}
+	} else if ( Color2 == 3 ){
+		//黄色
+		if( PanelFlag2 == true ){
+			My_color2.color = 0xFFFF00;
+			Cpanel2.transform.colorTransform = My_color2;
+			Cpanel2.alpha = 0.5;
+		} else {			
+			My_color2.color = 0xFFFF00;
+			Cpanel2.transform.colorTransform = My_color2;
+		}
+	}
+	
+	//Color3
+	if( Color3 == 0 ){
+		//赤
+		if( PanelFlag3 == true ){
+			My_color3.color = 0xFF0000;
+			Cpanel3.transform.colorTransform = My_color3;
+			Cpanel3.alpha = 0.5;
+		} else if( PanelFlag3 == false ){			
+			My_color3.color = 0xFF0000;
+			Cpanel3.transform.colorTransform = My_color3;
+		}
+	} else if ( Color3 == 1 ){
+		//緑
+		if( PanelFlag3 == true ){
+			My_color3.color = 0x00FF00;
+			Cpanel3.transform.colorTransform = My_color3;
+			Cpanel3.alpha = 0.5;
+		} else {			
+			My_color3.color = 0x00FF00;
+			Cpanel3.transform.colorTransform = My_color3;
+		}
+	} else if ( Color3 == 2){
+		//青
+		if( PanelFlag3 == true ){
+			My_color3.color = 0x0000FF;
+			Cpanel3.transform.colorTransform = My_color3;
+			Cpanel3.alpha = 0.5;
+		} else {			
+			My_color3.color = 0x0000FF;
+			Cpanel3.transform.colorTransform = My_color3;
+		}
+	} else if ( Color3 == 3 ){
+		//黄色
+		if( PanelFlag3 == true ){
+			My_color3.color = 0xFFFF00;
+			Cpanel3.transform.colorTransform = My_color3;
+			Cpanel3.alpha = 0.5;
+		} else {			
+			My_color3.color = 0xFFFF00;
+			Cpanel3.transform.colorTransform = My_color3;
+		}
+	}
+	
+	//Color4
+	if( Color4 == 0 ){
+		//赤
+		if( PanelFlag4 == true ){
+			My_color4.color = 0xFF0000;
+			Cpanel4.transform.colorTransform = My_color4;
+			Cpanel4.alpha = 0.5;
+		} else if( PanelFlag4 == false ){			
+			My_color4.color = 0xFF0000;
+			Cpanel4.transform.colorTransform = My_color4;
+		}
+	} else if ( Color4 == 1 ){
+		//緑
+		if( PanelFlag4 == true ){
+			My_color4.color = 0x00FF00;
+			Cpanel4.transform.colorTransform = My_color4;
+			Cpanel4.alpha = 0.5;
+		} else {			
+			My_color4.color = 0x00FF00;
+			Cpanel4.transform.colorTransform = My_color4;
+		}
+	} else if ( Color4 == 2){
+		//青
+		if( PanelFlag4 == true ){
+			My_color4.color = 0x0000FF;
+			Cpanel4.transform.colorTransform = My_color4;
+			Cpanel4.alpha = 0.5;
+		} else {			
+			My_color4.color = 0x0000FF;
+			Cpanel4.transform.colorTransform = My_color4;
+		}
+	} else if ( Color4 == 3 ){
+		//黄色
+		if( PanelFlag4 == true ){
+			My_color4.color = 0xFFFF00;
+			Cpanel4.transform.colorTransform = My_color4;
+			Cpanel4.alpha = 0.5;
+		} else {			
+			My_color4.color = 0xFFFF00;
+			Cpanel4.transform.colorTransform = My_color4;
+		}
+	}
+	
+	//Color5
+	if( Color5 == 0 ){
+		//赤
+		if( PanelFlag5 == true ){
+			My_color5.color = 0xFF0000;
+			Cpanel5.transform.colorTransform = My_color5;
+			Cpanel5.alpha = 0.5;
+		} else if( PanelFlag5 == false ){			
+			My_color5.color = 0xFF0000;
+			Cpanel5.transform.colorTransform = My_color5;
+		}
+	} else if ( Color5 == 1 ){
+		//緑
+		if( PanelFlag5 == true ){
+			My_color5.color = 0x00FF00;
+			Cpanel5.transform.colorTransform = My_color5;
+			Cpanel5.alpha = 0.5;
+		} else {			
+			My_color5.color = 0x00FF00;
+			Cpanel5.transform.colorTransform = My_color5;
+		}
+	} else if ( Color5 == 2){
+		//青
+		if( PanelFlag5 == true ){
+			My_color5.color = 0x0000FF;
+			Cpanel5.transform.colorTransform = My_color5;
+			Cpanel5.alpha = 0.5;
+		} else {			
+			My_color5.color = 0x0000FF;
+			Cpanel5.transform.colorTransform = My_color5;
+		}
+	} else if ( Color5 == 3 ){
+		//黄色
+		if( PanelFlag5 == true ){
+			My_color5.color = 0xFFFF00;
+			Cpanel5.transform.colorTransform = My_color5;
+			Cpanel5.alpha = 0.5;
+		} else {			
+			My_color5.color = 0xFFFF00;
+			Cpanel5.transform.colorTransform = My_color5;
+		}
+	}
+	
+	//Color6
+	if( Color6 == 0 ){
+		//赤
+		if( PanelFlag6 == true ){
+			My_color6.color = 0xFF0000;
+			Cpanel6.transform.colorTransform = My_color6;
+			Cpanel6.alpha = 0.5;
+		} else if( PanelFlag6 == false ){			
+			My_color6.color = 0xFF0000;
+			Cpanel6.transform.colorTransform = My_color6;
+		}
+	} else if ( Color6 == 1 ){
+		//緑
+		if( PanelFlag6 == true ){
+			My_color6.color = 0x00FF00;
+			Cpanel6.transform.colorTransform = My_color6;
+			Cpanel6.alpha = 0.5;
+		} else {			
+			My_color6.color = 0x00FF00;
+			Cpanel6.transform.colorTransform = My_color6;
+		}
+	} else if ( Color6 == 2){
+		//青
+		if( PanelFlag6 == true ){
+			My_color6.color = 0x0000FF;
+			Cpanel6.transform.colorTransform = My_color6;
+			Cpanel6.alpha = 0.5;
+		} else {			
+			My_color6.color = 0x0000FF;
+			Cpanel6.transform.colorTransform = My_color6;
+		}
+	} else if ( Color6 == 3 ){
+		//黄色
+		if( PanelFlag6 == true ){
+			My_color6.color = 0xFFFF00;
+			Cpanel6.transform.colorTransform = My_color6;
+			Cpanel6.alpha = 0.5;
+		} else {			
+			My_color6.color = 0xFFFF00;
+			Cpanel6.transform.colorTransform = My_color6;
+		}
+	}
+	
+	//Color7
+	if( Color7 == 0 ){
+		//赤
+		if( PanelFlag7 == true ){
+			My_color7.color = 0xFF0000;
+			Cpanel7.transform.colorTransform = My_color7;
+			Cpanel7.alpha = 0.5;
+		} else if( PanelFlag7 == false ){			
+			My_color7.color = 0xFF0000;
+			Cpanel7.transform.colorTransform = My_color7;
+		}
+	} else if ( Color7 == 1 ){
+		//緑
+		if( PanelFlag7 == true ){
+			My_color7.color = 0x00FF00;
+			Cpanel7.transform.colorTransform = My_color7;
+			Cpanel7.alpha = 0.5;
+		} else {			
+			My_color7.color = 0x00FF00;
+			Cpanel7.transform.colorTransform = My_color7;
+		}
+	} else if ( Color7 == 2){
+		//青
+		if( PanelFlag7 == true ){
+			My_color7.color = 0x0000FF;
+			Cpanel7.transform.colorTransform = My_color7;
+			Cpanel7.alpha = 0.5;
+		} else {			
+			My_color7.color = 0x0000FF;
+			Cpanel7.transform.colorTransform = My_color7;
+		}
+	} else if ( Color7 == 3 ){
+		//黄色
+		if( PanelFlag7 == true ){
+			My_color7.color = 0xFFFF00;
+			Cpanel7.transform.colorTransform = My_color7;
+			Cpanel7.alpha = 0.5;
+		} else {			
+			My_color7.color = 0xFFFF00;
+			Cpanel7.transform.colorTransform = My_color7;
+		}
+	}
+	
+	//Color8
+	if( Color8 == 0 ){
+		//赤
+		if( PanelFlag8 == true ){
+			My_color8.color = 0xFF0000;
+			Cpanel8.transform.colorTransform = My_color8;
+			Cpanel8.alpha = 0.5;
+		} else if( PanelFlag8 == false ){			
+			My_color8.color = 0xFF0000;
+			Cpanel8.transform.colorTransform = My_color8;
+		}
+	} else if ( Color8 == 1 ){
+		//緑
+		if( PanelFlag8 == true ){
+			My_color8.color = 0x00FF00;
+			Cpanel8.transform.colorTransform = My_color8;
+			Cpanel8.alpha = 0.5;
+		} else {			
+			My_color8.color = 0x00FF00;
+			Cpanel8.transform.colorTransform = My_color8;
+		}
+	} else if ( Color8 == 2){
+		//青
+		if( PanelFlag8 == true ){
+			My_color8.color = 0x0000FF;
+			Cpanel8.transform.colorTransform = My_color8;
+			Cpanel8.alpha = 0.5;
+		} else {			
+			My_color8.color = 0x0000FF;
+			Cpanel8.transform.colorTransform = My_color8;
+		}
+	} else if ( Color8 == 3 ){
+		//黄色
+		if( PanelFlag8 == true ){
+			My_color8.color = 0xFFFF00;
+			Cpanel8.transform.colorTransform = My_color8;
+			Cpanel8.alpha = 0.5;
+		} else {			
+			My_color8.color = 0xFFFF00;
+			Cpanel8.transform.colorTransform = My_color8;
+		}
+	}
+	
+	//Color9
+	if( Color9 == 0 ){
+		//赤
+		if( PanelFlag9 == true ){
+			My_color9.color = 0xFF0000;
+			Cpanel9.transform.colorTransform = My_color9;
+			Cpanel9.alpha = 0.5;
+		} else if( PanelFlag9 == false ){			
+			My_color9.color = 0xFF0000;
+			Cpanel9.transform.colorTransform = My_color9;
+		}
+	} else if ( Color9 == 1 ){
+		//緑
+		if( PanelFlag9 == true ){
+			My_color9.color = 0x00FF00;
+			Cpanel9.transform.colorTransform = My_color9;
+			Cpanel9.alpha = 0.5;
+		} else {			
+			My_color9.color = 0x00FF00;
+			Cpanel9.transform.colorTransform = My_color9;
+		}
+	} else if ( Color9 == 2){
+		//青
+		if( PanelFlag9 == true ){
+			My_color9.color = 0x0000FF;
+			Cpanel9.transform.colorTransform = My_color9;
+			Cpanel9.alpha = 0.5;
+		} else {			
+			My_color9.color = 0x0000FF;
+			Cpanel9.transform.colorTransform = My_color9;
+		}
+	} else if ( Color9 == 3 ){
+		//黄色
+		if( PanelFlag9 == true ){
+			My_color9.color = 0xFFFF00;
+			Cpanel9.transform.colorTransform = My_color9;
+			Cpanel9.alpha = 0.5;
+		} else {			
+			My_color9.color = 0xFFFF00;
+			Cpanel9.transform.colorTransform = My_color9;
+		}
+	}
+	
+	//Color10
+	if( Color10 == 0 ){
+		//赤
+		if( PanelFlag10 == true ){
+			My_color10.color = 0xFF0000;
+			Cpanel10.transform.colorTransform = My_color10;
+			Cpanel10.alpha = 0.5;
+		} else if( PanelFlag10== false ){			
+			My_color10.color = 0xFF0000;
+			Cpanel10.transform.colorTransform = My_color10;
+		}
+	} else if ( Color10 == 1 ){
+		//緑
+		if( PanelFlag10 == true ){
+			My_color10.color = 0x00FF00;
+			Cpanel10.transform.colorTransform = My_color10;
+			Cpanel10.alpha = 0.5;
+		} else {			
+			My_color10.color = 0x00FF00;
+			Cpanel10.transform.colorTransform = My_color10;
+		}
+	} else if ( Color10 == 2){
+		//青
+		if( PanelFlag10 == true ){
+			My_color10.color = 0x0000FF;
+			Cpanel10.transform.colorTransform = My_color10;
+			Cpanel10.alpha = 0.5;
+		} else {			
+			My_color10.color = 0x0000FF;
+			Cpanel10.transform.colorTransform = My_color10;
+		}
+	} else if ( Color10 == 3 ){
+		//黄色
+		if( PanelFlag10 == true ){
+			My_color10.color = 0xFFFF00;
+			Cpanel10.transform.colorTransform = My_color10;
+			Cpanel10.alpha = 0.5;
+		} else {			
+			My_color10.color = 0xFFFF00;
+			Cpanel10.transform.colorTransform = My_color10;
+		}
+	}
+	
+	//Color11
+	if( Color11 == 0 ){
+		//赤
+		if( PanelFlag11 == true ){
+			My_color11.color = 0xFF0000;
+			Cpanel11.transform.colorTransform = My_color11;
+			Cpanel11.alpha = 0.5;
+		} else if( PanelFlag11 == false ){			
+			My_color11.color = 0xFF0000;
+			Cpanel11.transform.colorTransform = My_color11;
+		}
+	} else if ( Color11 == 1 ){
+		//緑
+		if( PanelFlag11 == true ){
+			My_color11.color = 0x00FF00;
+			Cpanel11.transform.colorTransform = My_color11;
+			Cpanel11.alpha = 0.5;
+		} else {			
+			My_color11.color = 0x00FF00;
+			Cpanel11.transform.colorTransform = My_color11;
+		}
+	} else if ( Color11 == 2){
+		//青
+		if( PanelFlag11 == true ){
+			My_color11.color = 0x0000FF;
+			Cpanel11.transform.colorTransform = My_color11;
+			Cpanel11.alpha = 0.5;
+		} else {			
+			My_color11.color = 0x0000FF;
+			Cpanel11.transform.colorTransform = My_color11;
+		}
+	} else if ( Color11 == 3 ){
+		//黄色
+		if( PanelFlag11 == true ){
+			My_color11.color = 0xFFFF00;
+			Cpanel11.transform.colorTransform = My_color11;
+			Cpanel11.alpha = 0.5;
+		} else {			
+			My_color11.color = 0xFFFF00;
+			Cpanel11.transform.colorTransform = My_color11;
+		}
+	}
+	
+	//Color12
+	if( Color12 == 0 ){
+		//赤
+		if( PanelFlag12 == true ){
+			My_color12.color = 0xFF0000;
+			Cpanel12.transform.colorTransform = My_color12;
+			Cpanel12.alpha = 0.5;
+		} else if( PanelFlag12 == false ){			
+			My_color12.color = 0xFF0000;
+			Cpanel12.transform.colorTransform = My_color12;
+		}
+	} else if ( Color12 == 1 ){
+		//緑
+		if( PanelFlag12 == true ){
+			My_color12.color = 0x00FF00;
+			Cpanel12.transform.colorTransform = My_color12;
+			Cpanel12.alpha = 0.5;
+		} else {			
+			My_color12.color = 0x00FF00;
+			Cpanel12.transform.colorTransform = My_color12;
+		}
+	} else if ( Color12 == 2){
+		//青
+		if( PanelFlag12 == true ){
+			My_color12.color = 0x0000FF;
+			Cpanel12.transform.colorTransform = My_color12;
+			Cpanel12.alpha = 0.5;
+		} else {			
+			My_color12.color = 0x0000FF;
+			Cpanel12.transform.colorTransform = My_color12;
+		}
+	} else if ( Color12 == 3 ){
+		//黄色
+		if( PanelFlag12 == true ){
+			My_color12.color = 0xFFFF00;
+			Cpanel12.transform.colorTransform = My_color12;
+			Cpanel12.alpha = 0.5;
+		} else {			
+			My_color12.color = 0xFFFF00;
+			Cpanel12.transform.colorTransform = My_color12;
+		}
+	}
+	
+	//Color13
+	if( Color13 == 0 ){
+		//赤
+		if( PanelFlag13 == true ){
+			My_color13.color = 0xFF0000;
+			Cpanel13.transform.colorTransform = My_color13;
+			Cpanel13.alpha = 0.5;
+		} else if( PanelFlag13 == false ){			
+			My_color13.color = 0xFF0000;
+			Cpanel13.transform.colorTransform = My_color13;
+		}
+	} else if ( Color13 == 1 ){
+		//緑
+		if( PanelFlag13 == true ){
+			My_color13.color = 0x00FF00;
+			Cpanel13.transform.colorTransform = My_color13;
+			Cpanel13.alpha = 0.5;
+		} else {			
+			My_color13.color = 0x00FF00;
+			Cpanel13.transform.colorTransform = My_color13;
+		}
+	} else if ( Color13 == 2){
+		//青
+		if( PanelFlag13 == true ){
+			My_color13.color = 0x0000FF;
+			Cpanel13.transform.colorTransform = My_color13;
+			Cpanel13.alpha = 0.5;
+		} else {			
+			My_color13.color = 0x0000FF;
+			Cpanel13.transform.colorTransform = My_color13;
+		}
+	} else if ( Color13 == 3 ){
+		//黄色
+		if( PanelFlag13 == true ){
+			My_color13.color = 0xFFFF00;
+			Cpanel13.transform.colorTransform = My_color13;
+			Cpanel13.alpha = 0.5;
+		} else {			
+			My_color13.color = 0xFFFF00;
+			Cpanel13.transform.colorTransform = My_color13;
+		}
+	}
+	
+	//Color14
+	if( Color14 == 0 ){
+		//赤
+		if( PanelFlag14 == true ){
+			My_color14.color = 0xFF0000;
+			Cpanel14.transform.colorTransform = My_color14;
+			Cpanel14.alpha = 0.5;
+		} else if( PanelFlag14 == false ){			
+			My_color14.color = 0xFF0000;
+			Cpanel14.transform.colorTransform = My_color14;
+		}
+	} else if ( Color14 == 1 ){
+		//緑
+		if( PanelFlag14 == true ){
+			My_color14.color = 0x00FF00;
+			Cpanel14.transform.colorTransform = My_color14;
+			Cpanel14.alpha = 0.5;
+		} else {			
+			My_color14.color = 0x00FF00;
+			Cpanel14.transform.colorTransform = My_color14;
+		}
+	} else if ( Color14 == 2){
+		//青
+		if( PanelFlag14 == true ){
+			My_color14.color = 0x0000FF;
+			Cpanel14.transform.colorTransform = My_color14;
+			Cpanel14.alpha = 0.5;
+		} else {			
+			My_color14.color = 0x0000FF;
+			Cpanel14.transform.colorTransform = My_color14;
+		}
+	} else if ( Color14 == 3 ){
+		//黄色
+		if( PanelFlag14 == true ){
+			My_color14.color = 0xFFFF00;
+			Cpanel14.transform.colorTransform = My_color14;
+			Cpanel14.alpha = 0.5;
+		} else {			
+			My_color14.color = 0xFFFF00;
+			Cpanel14.transform.colorTransform = My_color14;
+		}
+	}
+	
+	//Color15
+	if( Color15 == 0 ){
+		//赤
+		if( PanelFlag15 == true ){
+			My_color15.color = 0xFF0000;
+			Cpanel15.transform.colorTransform = My_color15;
+			Cpanel15.alpha = 0.5;
+		} else if( PanelFlag15 == false ){			
+			My_color15.color = 0xFF0000;
+			Cpanel15.transform.colorTransform = My_color15;
+		}
+	} else if ( Color15 == 1 ){
+		//緑
+		if( PanelFlag15 == true ){
+			My_color15.color = 0x00FF00;
+			Cpanel15.transform.colorTransform = My_color15;
+			Cpanel15.alpha = 0.5;
+		} else {			
+			My_color15.color = 0x00FF00;
+			Cpanel15.transform.colorTransform = My_color15;
+		}
+	} else if ( Color15 == 2){
+		//青
+		if( PanelFlag15 == true ){
+			My_color15.color = 0x0000FF;
+			Cpanel15.transform.colorTransform = My_color15;
+			Cpanel15.alpha = 0.5;
+		} else {			
+			My_color15.color = 0x0000FF;
+			Cpanel15.transform.colorTransform = My_color15;
+		}
+	} else if ( Color15 == 3 ){
+		//黄色
+		if( PanelFlag15 == true ){
+			My_color15.color = 0xFFFF00;
+			Cpanel15.transform.colorTransform = My_color15;
+			Cpanel15.alpha = 0.5;
+		} else {			
+			My_color15.color = 0xFFFF00;
+			Cpanel15.transform.colorTransform = My_color15;
+		}
+	}
+	
+	//Color16
+	if( Color16 == 0 ){
+		//赤
+		if( PanelFlag16 == true ){
+			My_color16.color = 0xFF0000;
+			Cpanel16.transform.colorTransform = My_color16;
+			Cpanel16.alpha = 0.5;
+		} else if( PanelFlag16 == false ){			
+			My_color16.color = 0xFF0000;
+			Cpanel16.transform.colorTransform = My_color16;
+		}
+	} else if ( Color16 == 1 ){
+		//緑
+		if( PanelFlag16 == true ){
+			My_color16.color = 0x00FF00;
+			Cpanel16.transform.colorTransform = My_color16;
+			Cpanel16.alpha = 0.5;
+		} else {			
+			My_color16.color = 0x00FF00;
+			Cpanel16.transform.colorTransform = My_color16;
+		}
+	} else if ( Color16 == 2){
+		//青
+		if( PanelFlag16 == true ){
+			My_color16.color = 0x0000FF;
+			Cpanel16.transform.colorTransform = My_color16;
+			Cpanel16.alpha = 0.5;
+		} else {			
+			My_color16.color = 0x0000FF;
+			Cpanel16.transform.colorTransform = My_color16;
+		}
+	} else if ( Color16 == 3 ){
+		//黄色
+		if( PanelFlag16 == true ){
+			My_color16.color = 0xFFFF00;
+			Cpanel16.transform.colorTransform = My_color16;
+			Cpanel16.alpha = 0.5;
+		} else {			
+			My_color16.color = 0xFFFF00;
+			Cpanel16.transform.colorTransform = My_color16;
+		}
+	}
+}
+
+
+//Flame26
+stop();
+if( playBgmFlag == false ){
+	chanPlay = playBgm.play(0,999999);
+	playBgmFlag = true;
+}
+stage.addEventListener(TransformGestureEvent.GESTURE_SWIPE,  onSwipe4);
+stage.addEventListener(Event.ENTER_FRAME, Slider);
+
+function onSwipe4(ev:TransformGestureEvent):void{
+	if(ev.offsetX == 1){
+		stage.removeEventListener(TransformGestureEvent.GESTURE_SWIPE,onSwipe4);
+		accelerometer.removeEventListener(AccelerometerEvent.UPDATE,onAccUpdate);
+		stage.removeEventListener(Event.ENTER_FRAME, Slider);
+		gotoAndStop("play1");	
+	}
+	if(ev.offsetX == -1){
+		stage.removeEventListener(TransformGestureEvent.GESTURE_SWIPE,onSwipe4);
+		accelerometer.removeEventListener(AccelerometerEvent.UPDATE,onAccUpdate);
+		stage.removeEventListener(Event.ENTER_FRAME, Slider);
+		gotoAndStop("play3");
+	}
+}
+
+if( Accelerometer.isSupported ) {
+	var accelerometer:Accelerometer = new Accelerometer();
+	accelerometer.addEventListener(AccelerometerEvent.UPDATE,onAccUpdate);
+}
+
+function onAccUpdate(event:AccelerometerEvent):void{
+	ItiX = event.accelerationX;
+	ItiY = event.accelerationY;
+	ItiZ = event.accelerationZ;
+}
+
+function Slider(event:Event):void {
+	//赤球
+	if( 0 < ItiZ ) {
+		if( 0.6 < ItiY && ItiY < 1){
+			mcRedS.y += 1 * RPM;
+		} else if ( 0.3 < ItiY && ItiY < 0.6 ){
+			mcRedS.y += 2 * RPM;
+		} else if ( 0 < ItiY && ItiY < 0.3 ){
+			mcRedS.y += 2 * RPM;
+		}	
+	}
+	if( Upkabe.hitTestObject(mcRedS)){
+		RPM = 1;
+	} else if (Downkabe.hitTestObject(mcRedS)){
+		RPM = -1;
+	}
+	//ピンク球
+	if( 0.7 < ItiZ && ItiZ < 1) {
+		if( -0.2 < ItiY && ItiY < 0){
+			mcPinkS.y += 2 * PPM;
+		} else if ( -0.4 < ItiY && ItiY < -0.2 ){
+			mcPinkS.y += 4 * PPM;
+		} else if ( -0.7 < ItiY && ItiY < -0.4 ){
+			mcPinkS.y += 6 * PPM;
+		}	
+	}
+	if( Upkabe.hitTestObject(mcPinkS)){
+		PPM = 1;
+	} else if (Downkabe.hitTestObject(mcPinkS)){
+		PPM = -1;
+	}
+	//青球
+	if( 0 < ItiX ) {
+		if( 1 > ItiZ && ItiZ > 0.7){
+			mcBlueS.y += 3 * BPM;
+		} else if ( 0.7 > ItiZ && ItiZ > 0.4 ){
+			mcBlueS.y += 6 * BPM;
+		} else if ( 0.4 > ItiZ && ItiZ > 0 ){
+			mcBlueS.y += 9 * BPM;
+		}	
+	}
+	if( Upkabe.hitTestObject(mcBlueS)){
+		BPM = 1;
+	} else if (Downkabe.hitTestObject(mcBlueS)){
+		BPM = -1;
+	}
+	//緑球
+	if( ItiX < 0 ) {
+		if( 0 < ItiZ && ItiZ < 0.3 ){
+			mcGreenS.y += 3.5 * GPM;
+		} else if ( 0.3 < ItiZ && ItiZ < 0.6 ){
+			mcGreenS.y += 7 * GPM;
+		} else if ( 0.6 < ItiZ && ItiZ < 1 ){
+			mcGreenS.y += 10.5 * GPM;
+		}	
+	}
+	if( Upkabe.hitTestObject(mcGreenS)){
+		GPM = 1;
+	} else if (Downkabe.hitTestObject(mcGreenS)){
+		GPM = -1;
+	}
+	//ヒント開示
+	if( mcRrod.hitTestObject(mcRedS) && mcProd.hitTestObject(mcPinkS) && mcBrod.hitTestObject(mcBlueS) && mcGrod.hitTestObject(mcGreenS)){
+		stage.removeEventListener(Event.ENTER_FRAME, Slider);
+		mcHintGreen.visible = true;
+		PSEseikai.play(0,0);
+	}
+}
+
+//Flame31
+stop();
+stage.frameRate = 0.3;
+chanEd = edBgm.play(0,999999);
+
+/*stage.addEventListener(Event.ENTER_FRAME, EDmoviestop);
+function EDmoviestop(event:Event){
+	if(EDmovie.currentFrame == EDmovie.totalFrames){
+		stage.removeEventListener(Event.ENTER_FRAME, EDmoviestop);
+		chanEd.stop();
+		chanEd = null;
+		stage.frameRate = fps;
+		gotoAndStop("ED");
+	}
+	
+}*/
+
+
